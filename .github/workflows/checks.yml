@@ -1,0 +1,79 @@
+name: checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: the seal, the ledger, the contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # the ledger is checked against git's own dates
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # standard library only: anyone can run the same checks
+      - name: the seal is consistent and matches sealed/ROOT
+        run: python tools/seal.py verify
+      - name: opened files match their commitments
+        if: hashFiles('opened/salts.json') != ''
+        run: python tools/seal.py verify --opened opened/
+      - name: every seal is in the ledger, chained, archived and published in order
+        run: python -m vault ledger --verify --require-history
+      - name: every interface contract was cut from the sealed version of its file
+        run: python -m vault interfaces --check-index
+      - name: the README says what the seal says
+        run: python -m vault report --check
+      - name: the example proofs check out with nothing but the standard library
+        run: for p in examples/proofs/*.json; do python -I examples/verify_offline.py "$p"; done
+      - name: summary
+        run: |
+          python -m vault status
+          python -m vault diff
+
+  tests:
+    name: tests · python ${{ matrix.python }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.9", "3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install pytest "jsonschema>=4.18"
+      - run: pytest
+
+  js:
+    name: the verifier in JavaScript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: the same vectors, seals and proofs as the Python side
+        run: node --test examples/js/qorb-seal.test.mjs
+      - name: the published seal, from Node
+        run: node examples/js/verify.mjs examples/proofs/*.json --ledger sealed/ledger.json --manifest sealed/manifest.json
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ruff
+      - run: ruff check .
