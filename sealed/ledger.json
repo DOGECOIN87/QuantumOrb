@@ -1,0 +1,16 @@
+{
+ "scheme": "qorb-seal-v1",
+ "entries": [
+  {
+   "n": 1,
+   "sealed_at": "2026-10-12T21:22:22Z",
+   "root": "145d2c1fd7991bcc1fd384d447ef1424d49230ca639d9e3909e2bed053fa1c95",
+   "files": 155,
+   "lines": 18134,
+   "bytes": 7327995,
+   "note": "R0 · Vault: the first seal, published with the showcase",
+   "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+   "hash": "7c6be050d8ccaf32f6a1daa97bc692a55f85145eca7990794bac8866630aa59b"
+  }
+ ]
+}

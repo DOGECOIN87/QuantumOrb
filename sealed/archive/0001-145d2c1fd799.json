@@ -1,0 +1,1174 @@
+{
+ "scheme": "qorb-seal-v1",
+ "sealed_at": "2026-10-12T21:22:22Z",
+ "source": {
+  "files": 155,
+  "lines": 18134,
+  "bytes": 7327995
+ },
+ "components": {
+  "bot · core": {
+   "files": 9,
+   "lines": 1288,
+   "bytes": 56940
+  },
+  "bot · fixtures": {
+   "files": 17,
+   "lines": 952,
+   "bytes": 23748
+  },
+  "bot · interface": {
+   "files": 6,
+   "lines": 1378,
+   "bytes": 57498
+  },
+  "bot · pipeline": {
+   "files": 9,
+   "lines": 938,
+   "bytes": 42599
+  },
+  "bot · sources": {
+   "files": 4,
+   "lines": 695,
+   "bytes": 29820
+  },
+  "bot · tests": {
+   "files": 15,
+   "lines": 1350,
+   "bytes": 65857
+  },
+  "brand": {
+   "files": 9,
+   "lines": 169,
+   "bytes": 1260275
+  },
+  "documentation": {
+   "files": 19,
+   "lines": 485,
+   "bytes": 4002992
+  },
+  "infrastructure": {
+   "files": 17,
+   "lines": 623,
+   "bytes": 22254
+  },
+  "observatory · build & tests": {
+   "files": 11,
+   "lines": 1839,
+   "bytes": 70026
+  },
+  "observatory · client": {
+   "files": 4,
+   "lines": 1979,
+   "bytes": 184806
+  },
+  "observatory · public": {
+   "files": 12,
+   "lines": 2879,
+   "bytes": 1189220
+  },
+  "observatory · server": {
+   "files": 12,
+   "lines": 2362,
+   "bytes": 263680
+  },
+  "repository": {
+   "files": 9,
+   "lines": 682,
+   "bytes": 33177
+  },
+  "tooling": {
+   "files": 2,
+   "lines": 515,
+   "bytes": 25103
+  }
+ },
+ "root": "145d2c1fd7991bcc1fd384d447ef1424d49230ca639d9e3909e2bed053fa1c95",
+ "files": [
+  {
+   "path": ".dockerignore",
+   "component": "infrastructure",
+   "lines": 15,
+   "bytes": 190,
+   "commitment": "7f49c58d554a69599027e6e8fe2ff5b2c9a64ebd4a0cdeac9f233c857267da19"
+  },
+  {
+   "path": ".env.example",
+   "component": "repository",
+   "lines": 97,
+   "bytes": 4106,
+   "commitment": "bd025977d76a5d5c906c28c729e9177264fc6d95cefe1664b906ff0b2f769beb"
+  },
+  {
+   "path": ".gitattributes",
+   "component": "repository",
+   "lines": 38,
+   "bytes": 1319,
+   "commitment": "8e9d846408dc2d6fe1d6cbbfff25dbfd179a620bdbb49ea70be34503783482ca"
+  },
+  {
+   "path": ".github/workflows/tests.yml",
+   "component": "infrastructure",
+   "lines": 54,
+   "bytes": 1610,
+   "commitment": "6344a0fb319dd7c2f05e25fe054aeb819f2ab84faab387eff5bffacccfad2a92"
+  },
+  {
+   "path": ".gitignore",
+   "component": "repository",
+   "lines": 43,
+   "bytes": 610,
+   "commitment": "f4186207b89416458c4a433353ac6bc612ebc88a40effd0f23616585747301e3"
+  },
+  {
+   "path": "CHANGELOG.md",
+   "component": "repository",
+   "lines": 41,
+   "bytes": 2103,
+   "commitment": "ff245c880590924b02b519e8c5a8c6ab64307882f5ab3a7c9c67777fc5a4bbfa"
+  },
+  {
+   "path": "CLAUDE.md",
+   "component": "repository",
+   "lines": 51,
+   "bytes": 3324,
+   "commitment": "6380e6ea9255b1360a60b4e334c4e5c2643b326901ed59a7ab82ad711cffe99e"
+  },
+  {
+   "path": "LICENSE",
+   "component": "repository",
+   "lines": 21,
+   "bytes": 1067,
+   "commitment": "13c5c4a5b052767761c3d55b00a4c32d10609f74b5f8afd59c78ac3cdf87521d"
+  },
+  {
+   "path": "README.md",
+   "component": "repository",
+   "lines": 292,
+   "bytes": 16598,
+   "commitment": "07da89c039b898c9583fa8776579e69aad98c1f9aa6c257257180fd97b89fb7e"
+  },
+  {
+   "path": "SKILL.md",
+   "component": "repository",
+   "lines": 65,
+   "bytes": 3172,
+   "commitment": "d1712c09f270816ec2674e8e4571b4e2dd1b184e5ff2b2597fff0981fb78c519"
+  },
+  {
+   "path": "assets/boards/telegram.html",
+   "component": "brand",
+   "lines": 39,
+   "bytes": 2359,
+   "commitment": "73b9f49dad018da56c87ee1b64eab622286968dc4db4dc5780b72fd383a5c016"
+  },
+  {
+   "path": "assets/brand/README.md",
+   "component": "brand",
+   "lines": 25,
+   "bytes": 1320,
+   "commitment": "8c8d0f520d793e8ff02972ff69de6837ae28e9d58170e8a890ed58354db46e3a"
+  },
+  {
+   "path": "assets/brand/avatar_640.png",
+   "component": "brand",
+   "lines": 0,
+   "bytes": 366258,
+   "commitment": "51cedf5781e4e9cf8050c7d4692a30ea0615345868d54412e14dfae16293d962"
+  },
+  {
+   "path": "assets/brand/avatar_core_ring_640.png",
+   "component": "brand",
+   "lines": 0,
+   "bytes": 341895,
+   "commitment": "b1e532e05cc1e38055de0003379c0034035836d276a3bccff0d5ed9a5b23c50c"
+  },
+  {
+   "path": "assets/brand/banner.html",
+   "component": "brand",
+   "lines": 43,
+   "bytes": 3258,
+   "commitment": "953783eb5b3d16611b6e6e1e021cdbeee4ed6045e7b5f2e4fcc479642cb87697"
+  },
+  {
+   "path": "assets/brand/description_640x360.png",
+   "component": "brand",
+   "lines": 0,
+   "bytes": 168405,
+   "commitment": "d2df16c8ab661b15ca34ce54be1b01574c2584ebef65cdfbc490115bb7b8d2f7"
+  },
+  {
+   "path": "assets/brand/github-banner-1280x640.png",
+   "component": "brand",
+   "lines": 0,
+   "bytes": 188314,
+   "commitment": "45d45fdad306aa6b6e01646858a2b63b24bfbbf37b6bc2d948d58916eeb767d3"
+  },
+  {
+   "path": "assets/brand/make_brand.py",
+   "component": "brand",
+   "lines": 62,
+   "bytes": 2527,
+   "commitment": "74162739f64b4ee7973800bb52f3637d85eab7df262a6dfe9829b8fcb97d95c4"
+  },
+  {
+   "path": "assets/brand/welcome.png",
+   "component": "brand",
+   "lines": 0,
+   "bytes": 185939,
+   "commitment": "3e9987cd37b1c22d3b97a86533455b3999e57d1fe6e92c81cc4698c30060ce2d"
+  },
+  {
+   "path": "deploy/README.md",
+   "component": "infrastructure",
+   "lines": 107,
+   "bytes": 5076,
+   "commitment": "89b94e5d0ed7ca88d48a2bf8e2dc92dce26d9764a3386b3e321827f65d41824d"
+  },
+  {
+   "path": "deploy/backup.sh",
+   "component": "infrastructure",
+   "lines": 23,
+   "bytes": 765,
+   "commitment": "b98896b4ae09b3204680a6d200ebc8686811abf8fc0065b30b375feb9981601b"
+  },
+  {
+   "path": "deploy/docker/bot.Dockerfile",
+   "component": "infrastructure",
+   "lines": 13,
+   "bytes": 630,
+   "commitment": "fec3f1add40a070d51a44891e30e6c242e8135fd013147a04edea24a03b0e676"
+  },
+  {
+   "path": "deploy/docker/site.Dockerfile",
+   "component": "infrastructure",
+   "lines": 14,
+   "bytes": 527,
+   "commitment": "f492960b4169cd904756208ed717bad3de2cc0eff50e8a248bcde20c5ba307d9"
+  },
+  {
+   "path": "deploy/install.sh",
+   "component": "infrastructure",
+   "lines": 74,
+   "bytes": 3231,
+   "commitment": "000ccfca96fa83daf6b1ed2c4859e9cc0e583626a7962b9421e6c10a6ef62445"
+  },
+  {
+   "path": "deploy/nginx/quantumorb.conf",
+   "component": "infrastructure",
+   "lines": 73,
+   "bytes": 2413,
+   "commitment": "1673b10fb9b26d1c3ba806b5edbe384aed896fb3cf5640a1363ca9d2680390e4"
+  },
+  {
+   "path": "deploy/systemd/qorb-api.service",
+   "component": "infrastructure",
+   "lines": 33,
+   "bytes": 875,
+   "commitment": "0f5e6a6d834be2704b70702f12f03a112bd35e0d447b06c84b2e6035f46111f0"
+  },
+  {
+   "path": "deploy/systemd/qorb-backup.service",
+   "component": "infrastructure",
+   "lines": 13,
+   "bytes": 391,
+   "commitment": "494135d093fa61409dd2134bf44f5e0379500e3069fe7ff8e91d2a2b13c8dfd6"
+  },
+  {
+   "path": "deploy/systemd/qorb-backup.timer",
+   "component": "infrastructure",
+   "lines": 10,
+   "bytes": 165,
+   "commitment": "ad6f6081fd8596496d3bf813f576322c9ff943e87eb16d7a18e7a96e08be8e8e"
+  },
+  {
+   "path": "deploy/systemd/qorb-bot.service",
+   "component": "infrastructure",
+   "lines": 35,
+   "bytes": 988,
+   "commitment": "bdc05a0f18cc2f056262b635765560baac0d12ef7cfa40a26251cdf11f86a74c"
+  },
+  {
+   "path": "deploy/systemd/qorb-health.service",
+   "component": "infrastructure",
+   "lines": 19,
+   "bytes": 680,
+   "commitment": "3d148a833b6260caab5ff8825ab7a98f6db330a6efc327443131207042b9eb0b"
+  },
+  {
+   "path": "deploy/systemd/qorb-health.timer",
+   "component": "infrastructure",
+   "lines": 9,
+   "bytes": 141,
+   "commitment": "9bc4ddc6e6a69f772a0fa911abd2739b38c4dc64097f65e0e997f1336d641812"
+  },
+  {
+   "path": "deploy/systemd/qorb-site.service",
+   "component": "infrastructure",
+   "lines": 34,
+   "bytes": 934,
+   "commitment": "01c1d5a365aa112b9b02f5314a3e02c4c33f1e7feea22ad094b332f973f9145f"
+  },
+  {
+   "path": "deploy/update.sh",
+   "component": "infrastructure",
+   "lines": 56,
+   "bytes": 2437,
+   "commitment": "1bb29e0a5bb626ae5b7d902b7ac3d7c2f9b1eaff1d2fc5f7a071d34822bd1813"
+  },
+  {
+   "path": "docker-compose.yml",
+   "component": "infrastructure",
+   "lines": 41,
+   "bytes": 1201,
+   "commitment": "8bcaf96856de7359ee9c62eddcbdfcc6b8e5808348654d007366fce6dcb02778"
+  },
+  {
+   "path": "docs/BRIEF.md",
+   "component": "documentation",
+   "lines": 128,
+   "bytes": 7492,
+   "commitment": "68ca214cf4777cf0cd617aacdf10e07d3e4dfc5d116fb4a1b8da73a675ca5d1b"
+  },
+  {
+   "path": "docs/STATUS.md",
+   "component": "documentation",
+   "lines": 106,
+   "bytes": 10319,
+   "commitment": "33d91179c04594fb42d0e83c1a9edf234982ea0264a647888167e9fd69421001"
+  },
+  {
+   "path": "docs/bot-profile.md",
+   "component": "documentation",
+   "lines": 61,
+   "bytes": 2312,
+   "commitment": "e7c2cea6eb0456672fd3b733ffcc3be80d8ca36f7e383135c1f5b4c9e08c026f"
+  },
+  {
+   "path": "docs/pumpfun-endpoints.md",
+   "component": "documentation",
+   "lines": 123,
+   "bytes": 6744,
+   "commitment": "738262b58b3ae3d0975153f069ff2ee1e72f3e6f87176598609ed6b75c1896dc"
+  },
+  {
+   "path": "docs/pumpfun-mechanics.md",
+   "component": "documentation",
+   "lines": 67,
+   "bytes": 3870,
+   "commitment": "23d4ff2aff5904ef6cea7bea511b0fe18a414ca7dd3cb052edafe6151f466847"
+  },
+  {
+   "path": "docs/screens/agents.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 266025,
+   "commitment": "863f28c7062903f850700d8ccf19f57f1819c2061a6450cc0c7f0d2f6ca7f065"
+  },
+  {
+   "path": "docs/screens/bot-alerts.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 313635,
+   "commitment": "c12694a7e230527926b071cbf3705c020b95c1efc532b80d022dbb84e4d1f460"
+  },
+  {
+   "path": "docs/screens/bot-guard.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 160381,
+   "commitment": "fef9558b690eefda61e75a64755d748e45020f7909607bce91c3d45f06793b9d"
+  },
+  {
+   "path": "docs/screens/bot-signals.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 262394,
+   "commitment": "de935c95dad512436ba75982d1af4abd127474feec95c61cdaa8ee0495bc931b"
+  },
+  {
+   "path": "docs/screens/bot-start.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 403590,
+   "commitment": "e3c3b742f0291bb8d1c665eaabc51ffaeb3c8a552b1da5c04842d96463ff31ad"
+  },
+  {
+   "path": "docs/screens/bot-token.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 205460,
+   "commitment": "720b3dd3c2214cfa6669fef56e13cef6bfd31ef13a24854bf91145aa096ce980"
+  },
+  {
+   "path": "docs/screens/bot-watch.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 127349,
+   "commitment": "f234ba7a94e25191f6242bf7b4cc476d09fd79ca6ca16fbc41eced1c8fbcc0c7"
+  },
+  {
+   "path": "docs/screens/decision-trace.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 218685,
+   "commitment": "45ecc055f0f147a9681640c96532c64cf3e0bdab911f768704cbe750f2ab4c9b"
+  },
+  {
+   "path": "docs/screens/home.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 495258,
+   "commitment": "68152672f634abdbbce640405b4cfd204a2dfbe76ff3cab812dc6e10aeac775f"
+  },
+  {
+   "path": "docs/screens/how-it-works.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 272575,
+   "commitment": "92b156f4113ab97647b3b1a5bf4c4e0da8faf15d3ddb75ac5c528628f8247cd2"
+  },
+  {
+   "path": "docs/screens/market.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 195178,
+   "commitment": "213580515b71746c6c10b2c1c42a7f1b72a87402a4059ffa966ebf4260099d51"
+  },
+  {
+   "path": "docs/screens/models.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 506218,
+   "commitment": "cbf35ca8b74f3eaf88adb442752ce3843eba2fd79ba620954688382adc3164ce"
+  },
+  {
+   "path": "docs/screens/state-builder.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 304224,
+   "commitment": "c0b7dcd0d362b2dd570b20fce5fc5f385f36864773c54e3bef9d5961ed3b6999"
+  },
+  {
+   "path": "docs/screens/training.png",
+   "component": "documentation",
+   "lines": 0,
+   "bytes": 241283,
+   "commitment": "880cecbfd7143772fd713303685c8113ddaccffb052af9b87b268363d994b20b"
+  },
+  {
+   "path": "pyproject.toml",
+   "component": "repository",
+   "lines": 34,
+   "bytes": 878,
+   "commitment": "0d35b6f5b1b382b44478f0f435f0dfce8cac7c82d4d9bd01d39a9ca9ad62f732"
+  },
+  {
+   "path": "quantumorb/__init__.py",
+   "component": "bot · core",
+   "lines": 11,
+   "bytes": 592,
+   "commitment": "ee392e447305e9e34f4b2554b0e39c85f5a1cb5d9415ec3aac12e125a30b2901"
+  },
+  {
+   "path": "quantumorb/__main__.py",
+   "component": "bot · core",
+   "lines": 5,
+   "bytes": 52,
+   "commitment": "d7a7b9ac45dcaf1dffa1be8069b2daf7c9e5ada6f0e815eb480f272fe346919c"
+  },
+  {
+   "path": "quantumorb/api.py",
+   "component": "bot · core",
+   "lines": 187,
+   "bytes": 8112,
+   "commitment": "6d2d11c247196b24370b94fb27fda560c7f7a892da8717c4c7dd9a05202f1452"
+  },
+  {
+   "path": "quantumorb/bot/__init__.py",
+   "component": "bot · interface",
+   "lines": 5,
+   "bytes": 263,
+   "commitment": "81ec5c23571fe25b3cf1136a875cab3fefa9abe7857dd872303903639be565e7"
+  },
+  {
+   "path": "quantumorb/bot/commands.py",
+   "component": "bot · interface",
+   "lines": 586,
+   "bytes": 22463,
+   "commitment": "fea42cb09473aac4a365c68daf51c8b68ceae0ed255f54413c1196c01a02a94e"
+  },
+  {
+   "path": "quantumorb/bot/format.py",
+   "component": "bot · interface",
+   "lines": 426,
+   "bytes": 15874,
+   "commitment": "cd9d4ddaef02593f4fdd90340f0a2ca74176681b87ca35041b85fc76dfbf28e7"
+  },
+  {
+   "path": "quantumorb/bot/keyboards.py",
+   "component": "bot · interface",
+   "lines": 145,
+   "bytes": 7765,
+   "commitment": "b67497cd1efd2be0825ffb4b3bb11879c88e2f47a33843294d041a868ae64172"
+  },
+  {
+   "path": "quantumorb/bot/telegram.py",
+   "component": "bot · interface",
+   "lines": 81,
+   "bytes": 3353,
+   "commitment": "d81f1521e10011f9a47a99bcf7f1c60214f7bbf1e2ba98c9be070df2d1c9b4ee"
+  },
+  {
+   "path": "quantumorb/bot/words.py",
+   "component": "bot · interface",
+   "lines": 135,
+   "bytes": 7780,
+   "commitment": "927e9749493205ee5c1cad7f941e6464c0108d5382ea30181d3407429a05dc58"
+  },
+  {
+   "path": "quantumorb/cli.py",
+   "component": "bot · core",
+   "lines": 258,
+   "bytes": 10033,
+   "commitment": "4353c697481857dd4dadf3ee4ce8840e659b0ead0a4cfe07cd5c5905f2c4371d"
+  },
+  {
+   "path": "quantumorb/config.py",
+   "component": "bot · core",
+   "lines": 183,
+   "bytes": 8276,
+   "commitment": "0c22bd76d733a5c0fc4d78e32ce2d3aa2b9c06ea7f3595f8a50123cc7639a407"
+  },
+  {
+   "path": "quantumorb/db.py",
+   "component": "bot · core",
+   "lines": 439,
+   "bytes": 20859,
+   "commitment": "e3d46edff1b0ccc9bf1c735d8274301ee8d854bbbbd90e88c162645f978beac2"
+  },
+  {
+   "path": "quantumorb/links.py",
+   "component": "bot · core",
+   "lines": 33,
+   "bytes": 921,
+   "commitment": "372c2d918f0c9fc851591dd4d0655f17726c535c6451e97fb64fb6277583fe28"
+  },
+  {
+   "path": "quantumorb/pipeline/__init__.py",
+   "component": "bot · pipeline",
+   "lines": 14,
+   "bytes": 742,
+   "commitment": "fc4818380c19ef6a43b18c3a028fbdb8317e495b15b5eb0cc5ee215740f0fd34"
+  },
+  {
+   "path": "quantumorb/pipeline/feed.py",
+   "component": "bot · pipeline",
+   "lines": 74,
+   "bytes": 2798,
+   "commitment": "0b60dfd5734c136493ae7ae75a74386b9d7bcc8d57d13aba9bd5283d62ed31c4"
+  },
+  {
+   "path": "quantumorb/pipeline/follow.py",
+   "component": "bot · pipeline",
+   "lines": 43,
+   "bytes": 2110,
+   "commitment": "fbb3a84f96a4df79a9017059b9f0dbe28d3341a6f29d493943e9fc31e85941e5"
+  },
+  {
+   "path": "quantumorb/pipeline/guard.py",
+   "component": "bot · pipeline",
+   "lines": 170,
+   "bytes": 8107,
+   "commitment": "843e7eae6b33eedce57cb3ddc95ecbbd3366bd2f9572d48681eaf62d30b542dc"
+  },
+  {
+   "path": "quantumorb/pipeline/health.py",
+   "component": "bot · pipeline",
+   "lines": 82,
+   "bytes": 3686,
+   "commitment": "d2d7e849953c6654a4a2bcd55754f5f9741a6e8d78c00e7a4f3a32376dc7e644"
+  },
+  {
+   "path": "quantumorb/pipeline/monitor.py",
+   "component": "bot · pipeline",
+   "lines": 362,
+   "bytes": 16960,
+   "commitment": "90401db3681f6e06a6f001a62034d6aebd818bbbc54d0396e9a3393c5ad2ead7"
+  },
+  {
+   "path": "quantumorb/pipeline/record.py",
+   "component": "bot · pipeline",
+   "lines": 92,
+   "bytes": 4073,
+   "commitment": "6f6b53ef547c71aa4802f69c8ecfd194379be6f81e03df43094c9208c3bf0053"
+  },
+  {
+   "path": "quantumorb/pipeline/waitlist.py",
+   "component": "bot · pipeline",
+   "lines": 38,
+   "bytes": 1478,
+   "commitment": "177728158fe885e6aba2ce0e4686bfb4be2a348a45f9c9241af86b205bd3329c"
+  },
+  {
+   "path": "quantumorb/pipeline/watch.py",
+   "component": "bot · pipeline",
+   "lines": 63,
+   "bytes": 2645,
+   "commitment": "262d7641a4b5dc7054b6c6a4f4446401697d4286929cf05ba32930ca6156e6cc"
+  },
+  {
+   "path": "quantumorb/probe.py",
+   "component": "bot · core",
+   "lines": 121,
+   "bytes": 6180,
+   "commitment": "604ac6f549b19c06bcf609191c63285bfe3216dc32f430c04eac6a462d13870c"
+  },
+  {
+   "path": "quantumorb/ratelimit.py",
+   "component": "bot · core",
+   "lines": 51,
+   "bytes": 1915,
+   "commitment": "cff4721d46cbecb2328c80fa7137816ee8ab4c3c7623ee5b1dc66c1fac4fbfcc"
+  },
+  {
+   "path": "quantumorb/sources/__init__.py",
+   "component": "bot · sources",
+   "lines": 86,
+   "bytes": 3645,
+   "commitment": "e97230541506cf205895bf8bf77ea86724096f156ade20ec37ebba0c46c17a45"
+  },
+  {
+   "path": "quantumorb/sources/pumpfun.py",
+   "component": "bot · sources",
+   "lines": 257,
+   "bytes": 10734,
+   "commitment": "49dc98b1891285481b0ffc67252d2b3e0aef79b05154f46647e35fff41ffcb86"
+  },
+  {
+   "path": "quantumorb/sources/pumpportal.py",
+   "component": "bot · sources",
+   "lines": 129,
+   "bytes": 5595,
+   "commitment": "39603507ff2c0bcae5c50d53f949739947c483ccce6ce27c2a2e50e6490a254d"
+  },
+  {
+   "path": "quantumorb/sources/solana_rpc.py",
+   "component": "bot · sources",
+   "lines": 223,
+   "bytes": 9846,
+   "commitment": "6c6309f7c19092c96a3439a568ff5c2d4d3e986a51fb3f4dd66be9ecf746f0db"
+  },
+  {
+   "path": "scripts/capture_fixtures.py",
+   "component": "tooling",
+   "lines": 88,
+   "bytes": 4765,
+   "commitment": "ef6ba06339e90cfd472579d2cb4116f0244ef3733e19d2e7e36d062174df06ce"
+  },
+  {
+   "path": "scripts/render_screens.py",
+   "component": "tooling",
+   "lines": 427,
+   "bytes": 20338,
+   "commitment": "cdd973e59ea7d5f9c53003474f8fd349196dcbeeddcc04867ccace4574487e41"
+  },
+  {
+   "path": "site/.env.example",
+   "component": "observatory · build & tests",
+   "lines": 46,
+   "bytes": 2054,
+   "commitment": "7caef312a216a5c18af480ac8a290dc7cc9295450fdd4ff6899c0c72852c05f0"
+  },
+  {
+   "path": "site/.gitignore",
+   "component": "observatory · build & tests",
+   "lines": 5,
+   "bytes": 48,
+   "commitment": "2785ec5d223079234a2171dc7a0bad08d1698fcfc56fbc905a80131889b378fe"
+  },
+  {
+   "path": "site/README.md",
+   "component": "observatory · build & tests",
+   "lines": 148,
+   "bytes": 8722,
+   "commitment": "04158f0ffd42e5a50fb7591c9f4247d693f2fd73dfc897529515d8c7bc7349be"
+  },
+  {
+   "path": "site/client/core.js",
+   "component": "observatory · client",
+   "lines": 420,
+   "bytes": 39115,
+   "commitment": "e76aab3dfc4884b70e28e35922fdd02184b7bfdba7348b16096aba5bf46687a5"
+  },
+  {
+   "path": "site/client/main.js",
+   "component": "observatory · client",
+   "lines": 506,
+   "bytes": 46002,
+   "commitment": "a52a463d59a4b4d6b96a47d4ca82413e40c792af9a280a9a29772db718ae382e"
+  },
+  {
+   "path": "site/client/math.js",
+   "component": "observatory · client",
+   "lines": 970,
+   "bytes": 92321,
+   "commitment": "6da2b9e4df533c71ac4233fb4c1674dbe43bc1a5e9b2e6d9ef1ad68e70a74ab8"
+  },
+  {
+   "path": "site/client/pons.js",
+   "component": "observatory · client",
+   "lines": 83,
+   "bytes": 7368,
+   "commitment": "3823b2008a4edc4589358654f77e3951ed610a5c6cd77ce624d8b5c0a421ae12"
+  },
+  {
+   "path": "site/data/.gitkeep",
+   "component": "observatory · build & tests",
+   "lines": 0,
+   "bytes": 0,
+   "commitment": "c86ed16b7adca23a1f043b1b35cb5c50a0e2b58c97b479bded32a7d1d8572b5a"
+  },
+  {
+   "path": "site/ecosystem.config.cjs",
+   "component": "observatory · build & tests",
+   "lines": 14,
+   "bytes": 516,
+   "commitment": "d2ea0e7e99cea42ede5f3cc33e628edfeb695bdb66c1cbe9ae8b7e2d5d461870"
+  },
+  {
+   "path": "site/package-lock.json",
+   "component": "observatory · build & tests",
+   "lines": 1409,
+   "bytes": 46930,
+   "commitment": "ad0689b9702d73657dcbe138f191b307f6a63523e7beee9440a7964b60cc3104"
+  },
+  {
+   "path": "site/package.json",
+   "component": "observatory · build & tests",
+   "lines": 29,
+   "bytes": 807,
+   "commitment": "f1751753f45974e7c3bb6c2ea5627cce2e9dcb2f2f874f224a9eb2f660bacbfa"
+  },
+  {
+   "path": "site/public/apple-touch-icon.png",
+   "component": "observatory · public",
+   "lines": 0,
+   "bytes": 61609,
+   "commitment": "67f09d35c61e1e7cfb4cc7b48adba20949f3b51c677d3bfcdf6b6b354e3ad65f"
+  },
+  {
+   "path": "site/public/css/app.css",
+   "component": "observatory · public",
+   "lines": 869,
+   "bytes": 71862,
+   "commitment": "733123fd641df4df31256332ffd2dda2d9fd5c573bff33c0541654d2ac527b2c"
+  },
+  {
+   "path": "site/public/css/app.min.css",
+   "component": "observatory · public",
+   "lines": 1,
+   "bytes": 64294,
+   "commitment": "c713b2029665e0f3529320d9c44e8bbb65b435a7a2bd6b744af19bf5868c852e"
+  },
+  {
+   "path": "site/public/favicon-32.png",
+   "component": "observatory · public",
+   "lines": 0,
+   "bytes": 3053,
+   "commitment": "9424554f65214f0883183c5e25409c6e0bab3155ee67ad4772efed44a5f628d7"
+  },
+  {
+   "path": "site/public/favicon.ico",
+   "component": "observatory · public",
+   "lines": 0,
+   "bytes": 20948,
+   "commitment": "3dff374230f70855219f7193905aff9731780483e91214fbc3c235d7d5b1d4a0"
+  },
+  {
+   "path": "site/public/icon-192.png",
+   "component": "observatory · public",
+   "lines": 0,
+   "bytes": 68825,
+   "commitment": "bac528eb70ea7d5de00a4155e1fb977786245120474ca269de4794cb4d8e8a02"
+  },
+  {
+   "path": "site/public/icon-512.png",
+   "component": "observatory · public",
+   "lines": 0,
+   "bytes": 376287,
+   "commitment": "0b743b2ae846c4404887d27794a9c57a43e0d6420095406edc0fe2a40a229743"
+  },
+  {
+   "path": "site/public/js/app.js",
+   "component": "observatory · public",
+   "lines": 1990,
+   "bytes": 185001,
+   "commitment": "4b5a5c83aed4dcdb3e949456aefbabd73a9140e157446acbe218a0551412aba7"
+  },
+  {
+   "path": "site/public/js/app.min.js",
+   "component": "observatory · public",
+   "lines": 1,
+   "bytes": 148430,
+   "commitment": "f8cd44a598c8b48ec4a54d326080308496dfc7ac568df50ea08f69b3ad5c9684"
+  },
+  {
+   "path": "site/public/js/fit.js",
+   "component": "observatory · public",
+   "lines": 14,
+   "bytes": 782,
+   "commitment": "6fa4e524705ec82de7087497e08627d5e8c4d83f747bbcf0b28bb6d6964f4045"
+  },
+  {
+   "path": "site/public/og.png",
+   "component": "observatory · public",
+   "lines": 0,
+   "bytes": 188011,
+   "commitment": "546d46fcfcc4b2687eb2ac0400690ed399f514492046f4af6c7e57b15729d287"
+  },
+  {
+   "path": "site/public/robots.txt",
+   "component": "observatory · public",
+   "lines": 4,
+   "bytes": 118,
+   "commitment": "6cc84a986f815de1bd202d1b431747a17f850d41e23954154e5c669da0134d8c"
+  },
+  {
+   "path": "site/scripts/build.js",
+   "component": "observatory · build & tests",
+   "lines": 20,
+   "bytes": 1621,
+   "commitment": "a18ef25272e51029a558b77e688eafa2fdb6b1f61986107c680388e1c313622c"
+  },
+  {
+   "path": "site/scripts/check-client.js",
+   "component": "observatory · build & tests",
+   "lines": 27,
+   "bytes": 2117,
+   "commitment": "b0cd612223b11de5e81c646ad2ad2b20dbc975af2146a4c28a8ab7bc08fa0dd2"
+  },
+  {
+   "path": "site/server/config.js",
+   "component": "observatory · server",
+   "lines": 44,
+   "bytes": 2793,
+   "commitment": "d19ad36568617180e8bf4c74cbbedb58d1833ca0cbab5b89986f14bbc5696056"
+  },
+  {
+   "path": "site/server/engine/bus.js",
+   "component": "observatory · server",
+   "lines": 29,
+   "bytes": 2456,
+   "commitment": "66d0f7c7098decaba621a66db8d4a353cefc2a16390fde0f9a7c2dcd50d0342f"
+  },
+  {
+   "path": "site/server/engine/core.js",
+   "component": "observatory · server",
+   "lines": 142,
+   "bytes": 13994,
+   "commitment": "22a3931edabd6be152f0d600a21ab6afa4baa3d766e78650d581b897230002d6"
+  },
+  {
+   "path": "site/server/engine/live.js",
+   "component": "observatory · server",
+   "lines": 401,
+   "bytes": 39693,
+   "commitment": "aa7be3e589bebe74622f55b959a7291465ff7fc215480133c65b9e4486c314c7"
+  },
+  {
+   "path": "site/server/engine/sample.js",
+   "component": "observatory · server",
+   "lines": 582,
+   "bytes": 53096,
+   "commitment": "a1d68fd17f1b2a2d6279bc40a07f40ff7c7b0e6af8a05061f5e5632f45ca723a"
+  },
+  {
+   "path": "site/server/engine/training.js",
+   "component": "observatory · server",
+   "lines": 130,
+   "bytes": 13057,
+   "commitment": "37281731bba93486211072c615b9a2ebad4073eb028dc7ed421059b365cdca96"
+  },
+  {
+   "path": "site/server/engine/viz.js",
+   "component": "observatory · server",
+   "lines": 198,
+   "bytes": 18301,
+   "commitment": "31aa7f425f7f7a010bcec4fcbc818f226efdb03830126b0101804a09001b3c93"
+  },
+  {
+   "path": "site/server/index.js",
+   "component": "observatory · server",
+   "lines": 154,
+   "bytes": 10285,
+   "commitment": "0dd311a136237bec8571e53eb600203db24a6323f41a0eb470560c121ca9dbff"
+  },
+  {
+   "path": "site/server/lib/util.js",
+   "component": "observatory · server",
+   "lines": 39,
+   "bytes": 3778,
+   "commitment": "f9bbb323ef8f3c4edf4978689884feb0f413079c842a2fcb3a1fd7907c98447a"
+  },
+  {
+   "path": "site/server/render/home.js",
+   "component": "observatory · server",
+   "lines": 8,
+   "bytes": 558,
+   "commitment": "acf4a959997a9b63fc1513a880543eb067c61f27c7cf47a4939b68bd5bed066b"
+  },
+  {
+   "path": "site/server/render/live.js",
+   "component": "observatory · server",
+   "lines": 241,
+   "bytes": 28993,
+   "commitment": "747fae20f1ba9f9bbf333753394491c4b8dfd4d4c4951910abf8597083467287"
+  },
+  {
+   "path": "site/server/views/index.html",
+   "component": "observatory · server",
+   "lines": 394,
+   "bytes": 76676,
+   "commitment": "029fce9897cd030570ec2c92c8e1a710f76183ee92df4c5612b9dcc20d5f0a01"
+  },
+  {
+   "path": "site/test/server.test.js",
+   "component": "observatory · build & tests",
+   "lines": 96,
+   "bytes": 5450,
+   "commitment": "f528e9ee3642e3a3ec38ded04c51155658993ce25a43741d2f5a4075bc080e08"
+  },
+  {
+   "path": "site/test/util.test.js",
+   "component": "observatory · build & tests",
+   "lines": 45,
+   "bytes": 1761,
+   "commitment": "72c92e6d1eff3b76e05127e94ea5cd2a41810f240c2f8fb577fdeddfa5d7bedc"
+  },
+  {
+   "path": "tests/conftest.py",
+   "component": "bot · tests",
+   "lines": 122,
+   "bytes": 4037,
+   "commitment": "6a860e1a20fea68ce4d8c4b6f7fb9aea05d9c9bd3ecef06f68447ca000dd387d"
+  },
+  {
+   "path": "tests/fixtures/README.md",
+   "component": "bot · fixtures",
+   "lines": 27,
+   "bytes": 2422,
+   "commitment": "a32ce79868528202d72db005ff0dd7dc7fd1d0f2d03aeba61a2481b4a52d770c"
+  },
+  {
+   "path": "tests/fixtures/profile_holdings_sample.json",
+   "component": "bot · fixtures",
+   "lines": 19,
+   "bytes": 302,
+   "commitment": "13f6f2a79ba0f07fae323b2a94008191b5291bed1d36e44893c2feff5e68ead1"
+  },
+  {
+   "path": "tests/fixtures/pumpfun_coins_sample.json",
+   "component": "bot · fixtures",
+   "lines": 72,
+   "bytes": 2176,
+   "commitment": "6c34237871b02d692e4f833fcac2d08ace52091a3c48a58eed240a4352cc3099"
+  },
+  {
+   "path": "tests/fixtures/pumpportal_create.json",
+   "component": "bot · fixtures",
+   "lines": 16,
+   "bytes": 510,
+   "commitment": "7b6c3730a06089dba551c1b85ff048b9a01570bd420e99284184353e8edc3ff5"
+  },
+  {
+   "path": "tests/fixtures/pumpportal_migrate.json",
+   "component": "bot · fixtures",
+   "lines": 6,
+   "bytes": 168,
+   "commitment": "de1743c38aa24eea8749d721c000039ea84d476b1d56df66e96f66bdad1ecb6e"
+  },
+  {
+   "path": "tests/fixtures/pumpportal_subscribed.json",
+   "component": "bot · fixtures",
+   "lines": 3,
+   "bytes": 68,
+   "commitment": "a933b13a35204f416c580692624308224513df925b6bd095694397cfa604279d"
+  },
+  {
+   "path": "tests/fixtures/rpc_error_forbidden.json",
+   "component": "bot · fixtures",
+   "lines": 8,
+   "bytes": 125,
+   "commitment": "2b518bcb8deb3fb33a5ffc2c2a0a8b72439fa76c302ac226a664a16e82230196"
+  },
+  {
+   "path": "tests/fixtures/rpc_error_rate_limited.json",
+   "component": "bot · fixtures",
+   "lines": 8,
+   "bytes": 101,
+   "commitment": "f99612af2e051ae2a96d6b60d04107b2b7db007048290374bf613430cf16c64e"
+  },
+  {
+   "path": "tests/fixtures/rpc_largest_accounts.json",
+   "component": "bot · fixtures",
+   "lines": 106,
+   "bytes": 2613,
+   "commitment": "6f82d308fbbc66725bcff165a8611a13af051efd424c29a16dacd5c7879771e8"
+  },
+  {
+   "path": "tests/fixtures/rpc_mint_risky.json",
+   "component": "bot · fixtures",
+   "lines": 53,
+   "bytes": 1322,
+   "commitment": "a0993969bf5eb8356c0d69bf7ffba1b6472e700239a116f17ab72cc013f28381"
+  },
+  {
+   "path": "tests/fixtures/rpc_mint_spl.json",
+   "component": "bot · fixtures",
+   "lines": 27,
+   "bytes": 497,
+   "commitment": "1b9b6be844fe1535e62bb7a8ac58549ce5ebc0efccba2fdd3724fb1cba9da837"
+  },
+  {
+   "path": "tests/fixtures/rpc_mint_token2022.json",
+   "component": "bot · fixtures",
+   "lines": 47,
+   "bytes": 1025,
+   "commitment": "22767d8f1d113bde97ebab662128be15d62fadb26c1826edf0e83f9f8ef2eacf"
+  },
+  {
+   "path": "tests/fixtures/rpc_owner_programs.json",
+   "component": "bot · fixtures",
+   "lines": 151,
+   "bytes": 2681,
+   "commitment": "55dde50fe08f33cd9fa8a54937402f3ad20bd3a6e7906b80ab30b24e5991c12b"
+  },
+  {
+   "path": "tests/fixtures/rpc_token_owners.json",
+   "component": "bot · fixtures",
+   "lines": 372,
+   "bytes": 9104,
+   "commitment": "da486e02bd9698c51d6b86920c7c9029a2f5f94ecaacd7386332457dc91eeef1"
+  },
+  {
+   "path": "tests/fixtures/swap_activity_empty.json",
+   "component": "bot · fixtures",
+   "lines": 6,
+   "bytes": 56,
+   "commitment": "11ada7bb2d59f5955c59259b9b89efb42ec5124647fc6f69f221074067e387c1"
+  },
+  {
+   "path": "tests/fixtures/swap_activity_sample.json",
+   "component": "bot · fixtures",
+   "lines": 12,
+   "bytes": 163,
+   "commitment": "aa8c3c56cefcdb235729843a74fd2a556a800ae67e22ffd8d9f9f7fdb9f9e15c"
+  },
+  {
+   "path": "tests/fixtures/swap_trades_sample.json",
+   "component": "bot · fixtures",
+   "lines": 19,
+   "bytes": 415,
+   "commitment": "0607c9ffe9aff1bea29b18945c99247cb5816cea81f5be4b3f80f193614dbf53"
+  },
+  {
+   "path": "tests/test_api.py",
+   "component": "bot · tests",
+   "lines": 58,
+   "bytes": 2718,
+   "commitment": "7844ec5d8f893bad82dd6c1f3a4e71b8b9062ca371e0938a6553ada92d309696"
+  },
+  {
+   "path": "tests/test_cli.py",
+   "component": "bot · tests",
+   "lines": 47,
+   "bytes": 2175,
+   "commitment": "e9163f6c05967609fade6c4d18d42ded2748afb131009eeeab64bdec0a2a5644"
+  },
+  {
+   "path": "tests/test_db.py",
+   "component": "bot · tests",
+   "lines": 84,
+   "bytes": 3753,
+   "commitment": "e51df56084a9d3ff94273ac555b17531208e26279ac7a48d780bf9e9ff503d8b"
+  },
+  {
+   "path": "tests/test_dialogs.py",
+   "component": "bot · tests",
+   "lines": 207,
+   "bytes": 11396,
+   "commitment": "d6d7a92ed88dc9485a42a136a8c22b6e54ea405d4e52295540abaf7fe697c4ed"
+  },
+  {
+   "path": "tests/test_filters.py",
+   "component": "bot · tests",
+   "lines": 34,
+   "bytes": 1717,
+   "commitment": "b6220d9082321ae2ac392d5f3597372c648aa3c5e3d49c249253ae9d58e45a08"
+  },
+  {
+   "path": "tests/test_format.py",
+   "component": "bot · tests",
+   "lines": 55,
+   "bytes": 3070,
+   "commitment": "87d4a2555b635b20d0c03615946a05192c468590ba096607717d166602769952"
+  },
+  {
+   "path": "tests/test_guard.py",
+   "component": "bot · tests",
+   "lines": 127,
+   "bytes": 6960,
+   "commitment": "c747000f96a4bc815938ab6924b5b230688dfabd555b8bc4ba6319aa1e5e3790"
+  },
+  {
+   "path": "tests/test_health.py",
+   "component": "bot · tests",
+   "lines": 37,
+   "bytes": 1893,
+   "commitment": "b66347b1458c2260efcb151174f567a073e60e733389c52b707c63fdbccb621d"
+  },
+  {
+   "path": "tests/test_monitor.py",
+   "component": "bot · tests",
+   "lines": 239,
+   "bytes": 11499,
+   "commitment": "896e9881137344b8312ee304c84c17a2e9d2b0384d83191b8be340634f28a57c"
+  },
+  {
+   "path": "tests/test_pumpfun.py",
+   "component": "bot · tests",
+   "lines": 82,
+   "bytes": 4358,
+   "commitment": "d56916f6d3b1bdaf852a5979281faa3f36790272cf3a1f98819f973c6522d355"
+  },
+  {
+   "path": "tests/test_pumpportal.py",
+   "component": "bot · tests",
+   "lines": 60,
+   "bytes": 2520,
+   "commitment": "fc985bef0dd5e04aca28905e1e7c6a328274ec7a35858bf346e5b2e3f1bd4a9d"
+  },
+  {
+   "path": "tests/test_record.py",
+   "component": "bot · tests",
+   "lines": 72,
+   "bytes": 4028,
+   "commitment": "b366430e4e677d143596b2e38d6d13890902a088f942f11a7f09af69157b2509"
+  },
+  {
+   "path": "tests/test_rpc.py",
+   "component": "bot · tests",
+   "lines": 95,
+   "bytes": 4690,
+   "commitment": "4dd20ac9d684fd1d536ef21750655dc84c9754a99e1105dc3c765be1f97dc830"
+  },
+  {
+   "path": "tests/test_words.py",
+   "component": "bot · tests",
+   "lines": 31,
+   "bytes": 1043,
+   "commitment": "2e0f4e1babad0e4aa1cba567c929af9dc2addc4b57c041c343f9b3019bf12f54"
+  }
+ ]
+}
