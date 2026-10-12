@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self' data:">
+<title>Seal verifier</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<header class="bar">
+  <div class="mark" aria-hidden="true">◆</div>
+  <div>
+    <h1>Seal verifier</h1>
+    <p class="sub">qorb-seal-v1 · runs in this page with WebCrypto · nothing leaves your browser</p>
+  </div>
+</header>
+
+<main>
+  <section class="panel" id="ledger-panel">
+    <div class="head"><span>01</span> The ledger</div>
+    <p class="note">Every seal published so far. Each entry carries the hash of the one before it, so none can be dropped,
+      reordered or rewritten without the chain breaking here.</p>
+    <div class="row">
+      <button type="button" id="load-ledger">Load sealed/ledger.json</button>
+      <label class="file">or a ledger file <input type="file" id="ledger-file" accept=".json,application/json"></label>
+    </div>
+    <div class="out" id="ledger-out" aria-live="polite"></div>
+    <table class="seals" id="seals" hidden>
+      <thead><tr><th>#</th><th>Sealed (UTC)</th><th>Files</th><th>Lines</th><th>Root</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section class="panel" id="proof-panel">
+    <div class="head"><span>02</span> One file in one root</div>
+    <p class="note">An inclusion proof shows that a path and its commitment are a leaf of a published root - and says
+      nothing about any other file.</p>
+    <div class="row" id="examples"></div>
+    <textarea id="proof" spellcheck="false" placeholder='{"scheme": "qorb-seal-v1", "path": "…", "commitment": "…", "leaf": "…", "proof": [["L", "…"]], "root": "…"}'></textarea>
+    <div class="row">
+      <button type="button" id="check-proof" class="primary">Check the proof</button>
+      <label class="file">or a proof file <input type="file" id="proof-file" accept=".json,application/json"></label>
+    </div>
+    <div class="out" id="proof-out" aria-live="polite"></div>
+  </section>
+
+  <section class="panel" id="opened-panel">
+    <div class="head"><span>03</span> An opened file</div>
+    <p class="note">Once a file is opened, its salt is published with it. Its bytes and its salt give back the commitment
+      sealed on the day - or they do not.</p>
+    <div class="row">
+      <label class="file">The opened file <input type="file" id="opened-file"></label>
+      <input type="text" id="salt" placeholder="its salt, 64 hex characters, from opened/salts.json" spellcheck="false" autocomplete="off">
+    </div>
+    <div class="row"><button type="button" id="check-opened">Check against the proof above</button></div>
+    <div class="out" id="opened-out" aria-live="polite"></div>
+  </section>
+</main>
+
+<footer>
+  The same checks in Python: <code>python -m vault</code> · in Node: <code>node examples/js/verify.mjs</code> ·
+  the scheme: <code>SEAL.md</code>
+</footer>
+</body>
+</html>

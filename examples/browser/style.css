@@ -1,0 +1,156 @@
+/* The verifier page: the project's dark terminal look, system fonts only (the page loads nothing from
+   outside this repository). */
+
+:root {
+  --bg: #05080f;
+  --panel: #0a0f19;
+  --head: #0e1524;
+  --line: #1e2a3f;
+  --fg: #e6ecf7;
+  --dim: #8a96ab;
+  --blue: #5d94e8;
+  --green: #3ccf8e;
+  --red: #ef5d5d;
+  --amber: #f0b44c;
+  --mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.55 var(--mono);
+}
+
+body {
+  background-image:
+    linear-gradient(rgba(93, 148, 232, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(93, 148, 232, .045) 1px, transparent 1px);
+  background-size: 32px 32px;
+  min-height: 100vh;
+}
+
+.bar {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 28px max(16px, calc(50% - 424px)) 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.mark {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: linear-gradient(160deg, #6fa2f0, #2f5fb8);
+  color: #fff;
+  font-size: 20px;
+}
+
+h1 { margin: 0; font-size: 18px; letter-spacing: 3px; text-transform: uppercase; }
+.sub { margin: 2px 0 0; color: var(--dim); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; }
+
+main {
+  max-width: 880px;
+  margin: 24px auto;
+  padding: 0 16px;
+  display: grid;
+  gap: 18px;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 0 18px 18px;
+}
+
+.head {
+  margin: 0 -18px 12px;
+  padding: 10px 18px;
+  background: var(--head);
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.head span { color: var(--blue); margin-right: 8px; }
+.note { margin: 0 0 12px; color: var(--dim); font-size: 12.5px; }
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin: 10px 0;
+}
+
+button, .file, input[type=text], textarea {
+  font: inherit;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+
+button {
+  padding: 7px 12px;
+  font-size: 11.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+button:hover { border-color: var(--blue); color: var(--blue); }
+button.primary { background: #1d3d73; border-color: #3567b8; }
+button.primary:hover { color: #fff; background: #24508f; }
+button.chip { text-transform: none; letter-spacing: 0; font-size: 12px; color: var(--dim); }
+
+.file { padding: 6px 10px; font-size: 12px; color: var(--dim); cursor: pointer; }
+.file input { max-width: 210px; color: var(--dim); font-size: 11px; }
+
+input[type=text] { flex: 1 1 320px; padding: 7px 10px; font-size: 12px; }
+
+textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 10px;
+  font-size: 11.5px;
+  resize: vertical;
+}
+
+input:focus, textarea:focus, button:focus-visible { outline: 1px solid var(--blue); outline-offset: 1px; }
+
+.out { margin-top: 8px; font-size: 12.5px; word-break: break-all; }
+.line { padding: 3px 0; }
+.line b { display: inline-block; min-width: 44px; letter-spacing: 1px; }
+.line.ok b { color: var(--green); }
+.line.fail b { color: var(--red); }
+.line.info { color: var(--dim); }
+.line.info b { color: var(--amber); }
+
+.seals { width: 100%; margin-top: 10px; border-collapse: collapse; font-size: 12px; }
+.seals th, .seals td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+.seals th { color: var(--dim); font-weight: 400; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; }
+.seals td:nth-child(3), .seals td:nth-child(4) { text-align: right; font-variant-numeric: tabular-nums; }
+.seals th:nth-child(3), .seals th:nth-child(4) { text-align: right; }
+.seals td:last-child { color: var(--blue); }
+
+footer {
+  max-width: 880px;
+  margin: 8px auto 40px;
+  padding: 0 16px;
+  color: var(--dim);
+  font-size: 11.5px;
+}
+
+code { color: var(--fg); }
+
+@media (max-width: 560px) {
+  .bar { padding-top: 20px; }
+  .file input { max-width: 100%; }
+}
