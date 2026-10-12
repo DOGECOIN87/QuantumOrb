@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "qorb-seal-v1/proof",
+  "title": "QuantumOrb inclusion proof",
+  "description": "That one sealed file belongs to one root: its leaf, then each sibling up to the root with the side it sits on.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scheme",
+    "path",
+    "commitment",
+    "leaf",
+    "proof",
+    "root"
+  ],
+  "properties": {
+    "scheme": {
+      "const": "qorb-seal-v1"
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "commitment": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "leaf": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "SHA-256(0x00 || path || 0x00 || commitment)"
+    },
+    "proof": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "enum": [
+              "L",
+              "R"
+            ]
+          },
+          {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        ],
+        "minItems": 2,
+        "maxItems": 2
+      }
+    },
+    "root": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

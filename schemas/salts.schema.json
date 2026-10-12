@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "qorb-seal-v1/salts",
+  "title": "Salts of opened files",
+  "description": "opened/salts.json: the salt of each opened file, so anyone can recompute its commitment.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "string",
+    "pattern": "^[0-9a-f]{64}$"
+  }
+}
