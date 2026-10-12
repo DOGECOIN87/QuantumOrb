@@ -1,0 +1,22 @@
+QuantumOrb
+Copyright (c) 2026 QuantumOrb. All rights reserved.
+
+This repository - its text, images, interface files, manifests, ledger and tooling - is published so
+that it can be read and so that the seal it contains can be verified.
+
+You may view this repository, and run tools/seal.py, the vault package and the examples in it to
+verify the seal.
+
+You may not, without prior written permission from the copyright holder:
+  - copy, modify, merge, publish, distribute, sublicense or sell any part of this repository or of the
+    QuantumOrb software it describes;
+  - use the interface files, screenshots, names or brand of QuantumOrb in another product or service;
+  - attempt to reconstruct, reproduce or run the QuantumOrb software or any part of it from the
+    material published here.
+
+The QuantumOrb software itself (the Telegram bot, the site and their infrastructure) is not published in
+this repository and is not licensed by it.
+
+THIS REPOSITORY IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM, OUT OF
+OR IN CONNECTION WITH IT OR ITS USE. NOTHING HERE IS FINANCIAL ADVICE.
