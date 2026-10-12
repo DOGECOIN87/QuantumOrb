@@ -22,6 +22,17 @@
    "note": "screens hide the project's name; the vault, the ledger and complete contracts",
    "prev": "7c6be050d8ccaf32f6a1daa97bc692a55f85145eca7990794bac8866630aa59b",
    "hash": "8ea540bb3f2b82b19523b1572519c71d9daa93986320b03aa6ceff85ed4b16ce"
+  },
+  {
+   "n": 3,
+   "sealed_at": "2026-10-12T22:24:18Z",
+   "root": "8dd6c93e05b537f1972771a8f1aff150c3d83db4a7dc67cff276e0e8bf131af8",
+   "files": 155,
+   "lines": 18179,
+   "bytes": 7333401,
+   "note": "screens hide the token widget whole",
+   "prev": "8ea540bb3f2b82b19523b1572519c71d9daa93986320b03aa6ceff85ed4b16ce",
+   "hash": "f9dc5e5be9d6ea13b771785c75a9e14226bb167fd702c990f8fdb85d37cf5984"
   }
  ]
 }

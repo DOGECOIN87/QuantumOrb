@@ -1,0 +1,41 @@
+{
+ "scheme": "qorb-seal-v1",
+ "path": "site/server/engine/live.js",
+ "commitment": "aa7be3e589bebe74622f55b959a7291465ff7fc215480133c65b9e4486c314c7",
+ "leaf": "7b2b9f22de0e2a4ce6d8e641ebebcd1998dddd46e97aa2f23efc8164d501d56f",
+ "proof": [
+  [
+   "R",
+   "ff5a14448a80afe5535ba56a80c3d4596df2581a54899410e3eafd327739dd5b"
+  ],
+  [
+   "R",
+   "f6355720c6aca51f300a76bb2e2533757c7378f5a9a702236d6a91945be7457a"
+  ],
+  [
+   "R",
+   "c69e48ff08b0d87daf415916efac960ba030c6fff893f10ff90cf3e5861c2fd1"
+  ],
+  [
+   "R",
+   "f7029829f706b6f4beb363da9879d7f7d47dab19276255331f4439549537aa39"
+  ],
+  [
+   "L",
+   "d375a044d00df53a9f9965c36feae89fc2c74f250a011350cbcbdab2c5bc564a"
+  ],
+  [
+   "L",
+   "e498f7d3af0edfc13339e0b3983731b63c7c0f5ed397056a0df873913c2935c8"
+  ],
+  [
+   "L",
+   "251139cc1e592011928d2a3565a4d85f224a8ceb5b6071d9db230fb432b0213c"
+  ],
+  [
+   "R",
+   "5312c0c171520841653c6ddf51c83f0b69568b444f52f30b282dafd5b2742ca3"
+  ]
+ ],
+ "root": "8dd6c93e05b537f1972771a8f1aff150c3d83db4a7dc67cff276e0e8bf131af8"
+}
