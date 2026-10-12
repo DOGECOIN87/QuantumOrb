@@ -1,10 +1,10 @@
 {
  "scheme": "qorb-seal-v1",
- "sealed_at": "2026-10-12T21:22:22Z",
+ "sealed_at": "2026-10-12T21:57:10Z",
  "source": {
   "files": 155,
-  "lines": 18134,
-  "bytes": 7327995
+  "lines": 18168,
+  "bytes": 7332002
  },
  "components": {
   "bot · core": {
@@ -44,8 +44,8 @@
   },
   "documentation": {
    "files": 19,
-   "lines": 485,
-   "bytes": 4002992
+   "lines": 511,
+   "bytes": 4006347
   },
   "infrastructure": {
    "files": 17,
@@ -79,11 +79,11 @@
   },
   "tooling": {
    "files": 2,
-   "lines": 515,
-   "bytes": 25103
+   "lines": 523,
+   "bytes": 25755
   }
  },
- "root": "145d2c1fd7991bcc1fd384d447ef1424d49230ca639d9e3909e2bed053fa1c95",
+ "root": "d2043ae438efb329e9bc963ecbad1761ebb89a9bb33c87359afdb7109ca222f0",
  "files": [
   {
    "path": ".dockerignore",
@@ -333,9 +333,9 @@
   {
    "path": "docs/STATUS.md",
    "component": "documentation",
-   "lines": 106,
-   "bytes": 10319,
-   "commitment": "33d91179c04594fb42d0e83c1a9edf234982ea0264a647888167e9fd69421001"
+   "lines": 132,
+   "bytes": 13674,
+   "commitment": "b714b44c80ad289da9d41baccba88d5fb62529d14a84dafccea1a24bffc50304"
   },
   {
    "path": "docs/bot-profile.md",
@@ -669,9 +669,9 @@
   {
    "path": "scripts/render_screens.py",
    "component": "tooling",
-   "lines": 427,
-   "bytes": 20338,
-   "commitment": "cdd973e59ea7d5f9c53003474f8fd349196dcbeeddcc04867ccace4574487e41"
+   "lines": 435,
+   "bytes": 20990,
+   "commitment": "11d6be7ec275ceaf232c277dd83a156cdaf52749252b7c1aae9def2fc8dcf294"
   },
   {
    "path": "site/.env.example",

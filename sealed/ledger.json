@@ -11,6 +11,17 @@
    "note": "R0 · Vault: the first seal, published with the showcase",
    "prev": "0000000000000000000000000000000000000000000000000000000000000000",
    "hash": "7c6be050d8ccaf32f6a1daa97bc692a55f85145eca7990794bac8866630aa59b"
+  },
+  {
+   "n": 2,
+   "sealed_at": "2026-10-12T21:57:10Z",
+   "root": "d2043ae438efb329e9bc963ecbad1761ebb89a9bb33c87359afdb7109ca222f0",
+   "files": 155,
+   "lines": 18168,
+   "bytes": 7332002,
+   "note": "screens hide the project's name; the vault, the ledger and complete contracts",
+   "prev": "7c6be050d8ccaf32f6a1daa97bc692a55f85145eca7990794bac8866630aa59b",
+   "hash": "8ea540bb3f2b82b19523b1572519c71d9daa93986320b03aa6ceff85ed4b16ce"
   }
  ]
 }
