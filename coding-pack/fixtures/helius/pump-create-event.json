@@ -1,0 +1,35 @@
+{
+  "provider": "helius",
+  "transport": "fixture",
+  "notification_id": "fixture-create-001",
+  "received_at": "2026-10-13T01:00:00Z",
+  "commitment": "confirmed",
+  "slot": 300000001,
+  "signature": "5xSKzM8bvpudE521jikHqASzMr23Ms4X4ieY3K8oFPFrJWCSSgYocJmHznrR8b12voDxKDH8ykdCLXSRrx6duVLH",
+  "raw_payload_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "idl_revision": "fixture-pump-idl-1",
+  "raw_payload": {
+    "program": "pump",
+    "eventName": "CreateEvent",
+    "decoded": {
+      "name": "Example Coin",
+      "symbol": "EXM",
+      "uri": "https://example.invalid/meta.json",
+      "mint": "7LSsEoJGhLeZzGvDofTdNg7M3JttxQqGWNLo6vWMpump",
+      "bonding_curve": "EsmVk4MTsoT71JFaRM5DWFZboKpMQjfY6EYzAgUuksXw",
+      "user": "9XDYTfQKwW8sHPqnFdUreMmtmffmkHVPGTNV2e3LKxNW",
+      "creator": "5L5k7gtNLbeXdzpvNrFshg1E1id1ceUDfc6vPUTxp98q",
+      "timestamp": 1791853200,
+      "virtual_token_reserves": "1073000000000000",
+      "virtual_sol_reserves": "30000000000",
+      "real_token_reserves": "793100000000000",
+      "token_total_supply": "1000000000000000",
+      "quote_mint": "So11111111111111111111111111111111111111112",
+      "is_mayhem_mode": false,
+      "is_cashback_enabled": false,
+      "is_holder_reward": false,
+      "creator_fee_bps": "0",
+      "depth": 0
+    }
+  }
+}

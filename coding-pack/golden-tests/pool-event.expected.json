@@ -1,0 +1,9 @@
+{
+  "event_type": "pool_created",
+  "program": "pump_amm",
+  "event_name": "CreatePoolEvent",
+  "pool": "GseMAnNDvntR5uFePZ51yZBXzNSn7GdFPkfHwfr6d77J",
+  "base_mint": "7LSsEoJGhLeZzGvDofTdNg7M3JttxQqGWNLo6vWMpump",
+  "quote_mint": "So11111111111111111111111111111111111111112",
+  "decode_status": "decoded"
+}

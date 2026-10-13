@@ -1,0 +1,7 @@
+{
+  "edge_type": "funded_wallet",
+  "strength": "direct",
+  "evidence_type": "shared_funder",
+  "source": "helius_getTransactionsForAddress",
+  "algorithm_version": "cartographer-0.1.0"
+}

@@ -1,0 +1,17 @@
+{
+  "provider": "helius",
+  "transport": "fixture",
+  "notification_id": "bad-001",
+  "received_at": "2026-10-13T01:00:00Z",
+  "commitment": "confirmed",
+  "slot": 1,
+  "signature": "bad",
+  "raw_payload_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+  "raw_payload": {
+    "program": "pump",
+    "eventName": "FutureEvent",
+    "decoded": {
+      "mint": "not-base58"
+    }
+  }
+}

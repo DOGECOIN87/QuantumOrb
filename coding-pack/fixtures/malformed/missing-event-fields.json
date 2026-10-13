@@ -1,0 +1,17 @@
+{
+  "provider": "helius",
+  "transport": "fixture",
+  "notification_id": "bad-002",
+  "received_at": "2026-10-13T01:00:00Z",
+  "commitment": "confirmed",
+  "slot": 2,
+  "signature": "bad2",
+  "raw_payload_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+  "raw_payload": {
+    "program": "pump",
+    "eventName": "CreateEvent",
+    "decoded": {
+      "name": "Missing mint"
+    }
+  }
+}

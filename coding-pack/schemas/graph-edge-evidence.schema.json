@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "qorb/graph-edge-evidence/0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "edge_type",
+    "strength",
+    "evidence_type",
+    "source",
+    "algorithm_version",
+    "observed_at"
+  ],
+  "properties": {
+    "edge_type": {
+      "enum": [
+        "created_token",
+        "user_created_token",
+        "creator_declared_for_token",
+        "owns_token_account",
+        "traded_token",
+        "funded_wallet",
+        "received_sol_from",
+        "received_token_from",
+        "shared_transaction",
+        "same_slot_activity",
+        "same_bundle_activity",
+        "shares_counterparty",
+        "controls_bonding_curve",
+        "associated_with_pool",
+        "coin_creator_for_pool",
+        "same_metadata_uri",
+        "fee_recipient_for"
+      ]
+    },
+    "strength": {
+      "enum": [
+        "direct",
+        "strong",
+        "moderate",
+        "weak",
+        "unknown"
+      ]
+    },
+    "evidence_type": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "signature": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "slot": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "event_key": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "details": {
+      "type": "object"
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "algorithm_version": {
+      "type": "string"
+    }
+  }
+}

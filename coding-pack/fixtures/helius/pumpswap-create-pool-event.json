@@ -1,0 +1,32 @@
+{
+  "provider": "helius",
+  "transport": "fixture",
+  "notification_id": "fixture-pool-001",
+  "received_at": "2026-10-13T01:01:00Z",
+  "commitment": "finalized",
+  "slot": 300000100,
+  "signature": "3xSKzM8bvpudE521jikHqASzMr23Ms4X4ieY3K8oFPFrJWCSSgYocJmHznrR8b12voDxKDH8ykdCLXSRrx6duVLH",
+  "raw_payload_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "idl_revision": "fixture-pump-amm-idl-1",
+  "raw_payload": {
+    "program": "pump_amm",
+    "eventName": "CreatePoolEvent",
+    "decoded": {
+      "timestamp": 1791853260,
+      "index": 0,
+      "creator": "9XDYTfQKwW8sHPqnFdUreMmtmffmkHVPGTNV2e3LKxNW",
+      "base_mint": "7LSsEoJGhLeZzGvDofTdNg7M3JttxQqGWNLo6vWMpump",
+      "quote_mint": "So11111111111111111111111111111111111111112",
+      "pool": "GseMAnNDvntR5uFePZ51yZBXzNSn7GdFPkfHwfr6d77J",
+      "lp_mint": "6dpnPD6UWDw5hbJEuPQwnCCMba1JYwHANKuL6GQ6otAH",
+      "pool_base_amount": "1000000000",
+      "pool_quote_amount": "50000000000",
+      "initial_liquidity": "2236067977499",
+      "minimum_liquidity": "1000000",
+      "coin_creator": "5L5k7gtGnW8sHPqnQy2cKQCBp4bK9sgfy9UiM",
+      "is_mayhem_mode": false,
+      "is_holder_reward": false,
+      "creator_fee_bps": "0"
+    }
+  }
+}

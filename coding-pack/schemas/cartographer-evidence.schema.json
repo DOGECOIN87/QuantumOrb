@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "qorb/cartographer-evidence/0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "schema_version",
+    "run_id",
+    "mint",
+    "nodes_added",
+    "edges_added",
+    "edges_retracted",
+    "coverage",
+    "algorithm_version"
+  ],
+  "properties": {
+    "type": {
+      "const": "CartographerEvidenceUpdated"
+    },
+    "schema_version": {
+      "const": "0.1"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "mint": {
+      "type": "string"
+    },
+    "nodes_added": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "edges_added": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "edges_retracted": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "coverage": {
+      "type": "object",
+      "required": [
+        "history_complete",
+        "wallets_scanned",
+        "transactions_scanned"
+      ],
+      "properties": {
+        "history_complete": {
+          "type": "boolean"
+        },
+        "wallets_scanned": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "transactions_scanned": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "algorithm_version": {
+      "type": "string"
+    }
+  }
+}

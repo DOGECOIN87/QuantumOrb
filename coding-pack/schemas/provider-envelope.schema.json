@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "qorb/provider-envelope/0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "provider",
+    "transport",
+    "notification_id",
+    "received_at",
+    "commitment",
+    "slot",
+    "signature",
+    "raw_payload_sha256",
+    "raw_payload"
+  ],
+  "properties": {
+    "provider": {
+      "const": "helius"
+    },
+    "transport": {
+      "enum": [
+        "parsed_streams",
+        "laserstream",
+        "logs_subscribe",
+        "parsed_events",
+        "fixture"
+      ]
+    },
+    "notification_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "received_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "commitment": {
+      "enum": [
+        "processed",
+        "confirmed",
+        "finalized"
+      ]
+    },
+    "slot": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "signature": {
+      "type": "string",
+      "minLength": 32
+    },
+    "transaction_error": {},
+    "raw_payload_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "idl_revision": {
+      "type": "string"
+    },
+    "raw_payload": {
+      "type": "object"
+    }
+  }
+}

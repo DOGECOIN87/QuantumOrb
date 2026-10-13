@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "qorb/scout-event/0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_key",
+    "signature",
+    "slot",
+    "program",
+    "event_name",
+    "event_type",
+    "decode_status",
+    "finality_status",
+    "derivation_version"
+  ],
+  "properties": {
+    "event_key": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "signature": {
+      "type": "string"
+    },
+    "slot": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "block_time": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "program": {
+      "enum": [
+        "pump",
+        "pump_amm"
+      ]
+    },
+    "program_id": {
+      "type": "string"
+    },
+    "event_name": {
+      "type": "string"
+    },
+    "event_type": {
+      "enum": [
+        "token_created",
+        "curve_buy",
+        "curve_sell",
+        "curve_complete",
+        "migration",
+        "pool_created",
+        "pool_buy",
+        "pool_sell"
+      ]
+    },
+    "mint": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "creator": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "bonding_curve": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pool": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "quote_mint": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "payload": {
+      "type": "object"
+    },
+    "decode_status": {
+      "enum": [
+        "decoded",
+        "raw_only",
+        "failed"
+      ]
+    },
+    "finality_status": {
+      "enum": [
+        "provisional",
+        "finalized",
+        "reorged_or_changed"
+      ]
+    },
+    "derivation_version": {
+      "type": "string"
+    }
+  }
+}
