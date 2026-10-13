@@ -22,6 +22,7 @@ This pack converts `../plan.md` and `../scout-cartographer-spec.md` into small, 
 - `database/`: table and migration contract.
 - `fixtures/`: sanitized Helius/Pump/PumpSwap examples and malformed inputs.
 - `golden-tests/`: input-to-output expectations.
+- `interfaces/`: TypeScript declarations usable from TypeScript or checked JavaScript, covering all 16 database tables and agent boundaries.
 - `prompts/`: copy/paste prompts for implementing each ticket.
 - `decisions/`: records for decisions that must not be guessed.
 
