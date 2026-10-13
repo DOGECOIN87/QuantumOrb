@@ -77,6 +77,7 @@ class Settings(BaseSettings):
     app_env: Literal["development", "test", "production"] = "development"
     app_host: str = "127.0.0.1"
     app_port: int = Field(default=8000, ge=1, le=65535)
+    database_url: str = "sqlite:///./data/quantumorb.db"
 
     solana_network: SolanaNetwork = "mainnet-beta"
     ingest_mode: IngestMode = "demo"
