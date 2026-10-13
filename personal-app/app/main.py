@@ -2,12 +2,12 @@
 
 from fastapi import FastAPI
 
-from app.config import Settings
+from app.config import Settings, load_settings
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:
     """Create the app without starting provider calls or background ingestion."""
-    resolved_settings = settings or Settings()
+    resolved_settings = settings if settings is not None else load_settings()
     application = FastAPI(
         title="QuantumOrb Personal Monitor",
         description="Private, read-only Solana monitoring for local research.",
