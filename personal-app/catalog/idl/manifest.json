@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source_repository": "https://github.com/pump-fun/pump-public-docs",
+  "source_commit": "2293f9a66c654e9fe82dc5e8f4618538f24bb35f",
+  "verified_at": "2026-10-13",
+  "programs": {
+    "pump": {
+      "file": "pump.json",
+      "source_url": "https://github.com/pump-fun/pump-public-docs/blob/2293f9a66c654e9fe82dc5e8f4618538f24bb35f/idl/pump.json",
+      "canonical_sha256": "fe3df1a9941d8daa09351cd49d14384bfcbc886817aaed3f2aca95462511ebbb"
+    },
+    "pump_amm": {
+      "file": "pump_amm.json",
+      "source_url": "https://github.com/pump-fun/pump-public-docs/blob/2293f9a66c654e9fe82dc5e8f4618538f24bb35f/idl/pump_amm.json",
+      "canonical_sha256": "12615316ba4e7a8e48183145ef168cfda1a46ab3885389cd2fa632de2a86d2ef"
+    }
+  }
+}

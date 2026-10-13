@@ -6,7 +6,7 @@
   "commitment": "confirmed",
   "slot": 300000002,
   "signature": "4xSKzM8bvpudE521jikHqASzMr23Ms4X4ieY3K8oFPFrJWCSSgYocJmHznrR8b12voDxKDH8ykdCLXSRrx6duVLH",
-  "raw_payload_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "raw_payload_sha256": "0db4c449703a7140c46f07bfa6b4294a70312b87d14a87df690a51c98712b9b2",
   "idl_revision": "fixture-pump-idl-1",
   "raw_payload": {
     "program": "pump",
@@ -31,6 +31,7 @@
       "virtual_quote_reserves": "0",
       "real_quote_reserves": "10000000",
       "ix_name": "buy"
-    }
+    },
+    "eventIndex": 0
   }
 }

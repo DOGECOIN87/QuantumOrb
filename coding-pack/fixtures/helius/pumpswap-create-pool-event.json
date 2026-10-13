@@ -6,7 +6,7 @@
   "commitment": "finalized",
   "slot": 300000100,
   "signature": "3xSKzM8bvpudE521jikHqASzMr23Ms4X4ieY3K8oFPFrJWCSSgYocJmHznrR8b12voDxKDH8ykdCLXSRrx6duVLH",
-  "raw_payload_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "raw_payload_sha256": "0c27ebe85c042ecd733fb011be40ddd47b6980361962de37f7199b8e5739156c",
   "idl_revision": "fixture-pump-amm-idl-1",
   "raw_payload": {
     "program": "pump_amm",
@@ -27,6 +27,7 @@
       "is_mayhem_mode": false,
       "is_holder_reward": false,
       "creator_fee_bps": "0"
-    }
+    },
+    "eventIndex": 0
   }
 }
