@@ -102,6 +102,7 @@ class Settings(BaseSettings):
     cartographer_max_wallets_per_token: int = Field(default=200, ge=1, le=200)
     cartographer_max_counterparties_per_wallet: int = Field(default=100, ge=1, le=100)
     cartographer_lookback_days: int = Field(default=30, ge=1, le=30)
+    cartographer_min_funding_lamports: int = Field(default=0, ge=0, le=(1 << 64) - 1)
 
     @field_validator("app_env", mode="before")
     @classmethod
@@ -193,6 +194,7 @@ class Settings(BaseSettings):
                 self.cartographer_max_counterparties_per_wallet
             ),
             "cartographer_lookback_days": self.cartographer_lookback_days,
+            "cartographer_min_funding_lamports": self.cartographer_min_funding_lamports,
         }
 
 
