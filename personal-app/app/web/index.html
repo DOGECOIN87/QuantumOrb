@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta
+      name="description"
+      content="QuantumOrb Observatory. Explore local Solana observations and evidence relationships."
+    />
+    <title>QuantumOrb — The Observatory</title>
+    <link rel="icon" href="/assets/orb.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/dashboard.css" />
+    <script type="module" src="/assets/dashboard.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#workspace">Skip to dashboard</a>
+    <svg
+      class="symbol-library"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <symbol id="icon-scout" viewBox="0 0 48 48">
+          <circle cx="24" cy="24" r="20" />
+          <circle cx="24" cy="24" r="13" />
+          <circle cx="24" cy="24" r="6" />
+          <path d="M9 39 24 24 38 13M4 24h40M24 4v40" />
+        </symbol>
+        <symbol id="icon-cartographer" viewBox="0 0 48 48">
+          <path d="m10 13 26-5-7 27-19-22 6 27 27-18-7-14M16 40l13-5 14-13" />
+          <circle cx="10" cy="13" r="3" />
+          <circle cx="36" cy="8" r="3" />
+          <circle cx="29" cy="35" r="3" />
+          <circle cx="16" cy="40" r="3" />
+          <circle cx="43" cy="22" r="3" />
+        </symbol>
+        <symbol id="icon-judge" viewBox="0 0 48 48">
+          <path d="M4 42h40M9 42V9h5v33M20 42V17h5v25M31 42V25h5v17M42 42V33" />
+        </symbol>
+        <symbol id="icon-quant" viewBox="0 0 48 48">
+          <path
+            d="M4 41h40M5 40c11 0 11-31 19-31s8 31 19 31M24 7v35M12 34h24M17 24h14"
+          />
+        </symbol>
+        <symbol id="icon-guard" viewBox="0 0 48 48">
+          <path d="m24 3 18 10v22L24 45 6 35V13ZM15 15l18 18M33 15 15 33" />
+        </symbol>
+        <symbol id="icon-executor" viewBox="0 0 48 48">
+          <path
+            d="M3 24h42M10 9v29M7 17h6v10H7ZM24 4v38M21 11h6v15h-6ZM38 12v29M35 25h6v8h-6Z"
+          />
+        </symbol>
+      </defs>
+    </svg>
+
+    <header class="site-header">
+      <a class="brand" href="#orb" aria-label="QuantumOrb home">
+        <span class="brand-mark" aria-hidden="true"
+          ><img src="/assets/orb.svg" alt="" width="34" height="34"
+        /></span>
+        <span
+          ><strong>QUANTUM<span>ORB</span></strong
+          ><small>THE OBSERVATORY</small></span
+        >
+      </a>
+      <button
+        class="icon-button menu-toggle"
+        id="menu-toggle"
+        aria-expanded="false"
+        aria-controls="main-nav"
+        aria-label="Open navigation"
+      >
+        ☰
+      </button>
+      <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+        <a href="#orb" data-route="orb" aria-current="page">ORB</a>
+        <a href="#tokens" data-route="tokens">TOKENS</a>
+        <a href="#traders" data-route="traders">TRADERS</a>
+        <a href="#activity" data-route="activity">ACTIVITY</a>
+        <a href="#agents" data-route="agents">AGENTS</a>
+        <a href="#guide" data-route="guide">HOW IT WORKS</a>
+      </nav>
+      <div class="header-tools">
+        <span class="network-label"
+          ><span class="status-dot"></span> SOLANA
+          <span class="muted">· MAINNET</span></span
+        >
+        <a class="header-status" href="#system" id="header-status"
+          >LOCAL INDEX ↗</a
+        >
+        <label class="sr-only" for="data-source">Data source</label>
+        <select id="data-source" class="source-select">
+          <option value="local">LOCAL DATA</option>
+          <option value="demo">SAMPLE DATA</option>
+        </select>
+      </div>
+    </header>
+
+    <div class="feed-ticker" aria-label="Latest indexed observations">
+      <span class="ticker-label" id="ticker-label"
+        ><span class="status-dot"></span> INDEXED FEED</span
+      >
+      <div class="ticker-content" id="ticker-content">
+        Loading local observations…
+      </div>
+      <button
+        class="ticker-pause"
+        id="pause-feed"
+        aria-pressed="false"
+        aria-label="Pause automatic data refresh"
+      >
+        Ⅱ PAUSE
+      </button>
+    </div>
+
+    <main id="workspace" class="workspace" tabindex="-1">
+      <div class="notice" id="data-notice" role="status" hidden></div>
+
+      <section class="page" id="page-orb" aria-labelledby="orb-heading">
+        <div class="overview-layout">
+          <div class="desk-toolbar">
+            <div class="desk-title">
+              <h1 id="orb-heading">OBSERVATION DESK</h1>
+              <span class="badge blue">RESEARCH MODE</span>
+            </div>
+            <div class="desk-stats">
+              <span>EVENTS <strong id="desk-events">—</strong></span
+              ><span
+                >FINALIZED
+                <strong id="desk-finalized" class="green">—</strong></span
+              ><span>LAST <strong id="desk-last">NOT READ</strong></span
+              ><span id="desk-slot">SLOT NOT READ</span>
+            </div>
+          </div>
+
+          <section class="instrument panel" aria-label="Orb network overview">
+            <div class="panel-heading">
+              <h2>◆ THE ORB <span>· OBSERVE → CONNECT → UNDERSTAND</span></h2>
+              <span class="instrument-mode" id="orb-source-label">LOCAL</span>
+            </div>
+            <div class="instrument-body">
+              <div class="observables">
+                <p class="micro-heading">
+                  OBSERVABLES <span>LOCAL INDEX</span>
+                </p>
+                <div id="observables"></div>
+              </div>
+              <div class="orb-stage">
+                <div class="orb-coordinate coord-top">
+                  <span>θ / OBSERVATION FIELD</span
+                  ><span id="orb-node-count">— NODES</span>
+                </div>
+                <canvas
+                  id="orb-canvas"
+                  role="img"
+                  aria-label="Animated schematic of the observation network. Actual evidence relationships are available in token details."
+                ></canvas>
+                <div class="orb-coordinate coord-bottom">
+                  <span>SCHEMATIC / NOT A SCORE</span
+                  ><button
+                    id="toggle-motion"
+                    aria-pressed="false"
+                    title="Toggle Orb animation"
+                  >
+                    MOTION ON
+                  </button>
+                </div>
+              </div>
+              <div class="evidence-stack">
+                <p class="micro-heading">
+                  EVIDENCE STACK <span>RECENT OBSERVATIONS</span>
+                </p>
+                <div id="evidence-stack" class="stack-items">
+                  <p class="empty-inline">Waiting for observations.</p>
+                </div>
+                <a href="#activity" class="stack-footer"
+                  >INSPECT ACTIVITY <span>↗</span></a
+                >
+              </div>
+            </div>
+            <div class="agent-network">
+              <div class="network-wire" aria-hidden="true">
+                <span>OBSERVATIONS IN ↓</span><span>↓ EVIDENCE OUT</span>
+              </div>
+              <div id="agent-strip" class="agent-strip"></div>
+            </div>
+            <div class="instrument-footer">
+              <span
+                ><i class="legend-dot blue"></i> OBSERVATION
+                <i class="legend-dot purple"></i> RELATIONSHIP
+                <i class="legend-dot yellow"></i> CONTEXT</span
+              ><span id="orb-update">AWAITING DATA</span>
+            </div>
+          </section>
+        </div>
+
+        <div
+          class="counter-strip"
+          id="counter-strip"
+          aria-label="Indexed activity counters"
+        ></div>
+
+        <section
+          class="panel activity-preview"
+          aria-labelledby="preview-heading"
+        >
+          <div class="panel-heading">
+            <h2 id="preview-heading">
+              ◆ THE OBSERVATION LOG <span>· LATEST IN THE LOCAL INDEX</span>
+            </h2>
+            <a href="#activity" class="text-link">VIEW ALL ↗</a>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>EVENT</th>
+                  <th>TOKEN</th>
+                  <th>SLOT</th>
+                  <th>FINALITY</th>
+                  <th>OBSERVED</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="preview-rows"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section
+        class="page"
+        id="page-tokens"
+        aria-labelledby="tokens-heading"
+        hidden
+      >
+        <div class="page-intro">
+          <p class="eyebrow">THE LAUNCH INDEX</p>
+          <h1 id="tokens-heading">Every token has a trail.</h1>
+          <p>
+            Follow a launch from its first observation to its stored evidence
+            graph.
+          </p>
+        </div>
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>◆ OBSERVED TOKENS</h2>
+            <span class="micro" id="tokens-total">— TOKENS</span>
+          </div>
+          <div class="table-toolbar">
+            <div class="search-field">
+              <span aria-hidden="true">⌕</span
+              ><input
+                type="search"
+                id="token-search"
+                placeholder="Search mint or creator address…"
+                aria-label="Search token mint or creator address"
+                autocomplete="off"
+                spellcheck="false"
+              /><kbd>/</kbd>
+            </div>
+            <label class="sr-only" for="lifecycle-filter">Lifecycle</label
+            ><select id="lifecycle-filter">
+              <option value="">ALL LIFECYCLES</option>
+              <option value="seen_create">CREATED</option>
+              <option value="curve_trading">CURVE TRADING</option>
+              <option value="curve_complete">CURVE COMPLETE</option>
+              <option value="migration_seen">MIGRATION SEEN</option>
+              <option value="pool_active">POOL ACTIVE</option>
+              <option value="pool_trading">POOL TRADING</option></select
+            ><button class="button" data-export="tokens">↓ EXPORT JSON</button>
+          </div>
+          <p class="filter-message" id="token-filter-message" role="status"></p>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>TOKEN / MINT</th>
+                  <th>LIFECYCLE</th>
+                  <th>CREATOR</th>
+                  <th>EVENTS</th>
+                  <th>FINALITY</th>
+                  <th>LAST OBSERVED</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="token-rows"></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="tokens-pagination"></div>
+        </section>
+      </section>
+
+      <section
+        class="page"
+        id="page-traders"
+        aria-labelledby="traders-heading"
+        hidden
+      >
+        <div class="page-intro">
+          <p class="eyebrow">THE WALLET INDEX</p>
+          <h1 id="traders-heading">Follow the connections.</h1>
+          <p>
+            Observed wallet activity. Public addresses represent wallets, not
+            identities.
+          </p>
+        </div>
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>◆ OBSERVED WALLETS</h2>
+            <span class="micro" id="wallets-total">— WALLETS</span>
+          </div>
+          <div class="table-toolbar">
+            <div class="search-field">
+              <span aria-hidden="true">⌕</span
+              ><input
+                type="search"
+                id="wallet-search"
+                placeholder="Search wallet address…"
+                aria-label="Search wallet address"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+            <label class="sr-only" for="wallet-window"
+              >Wallet observation window</label
+            ><select id="wallet-window">
+              <option value="all">ALL INDEXED</option>
+              <option value="1h">LAST HOUR</option>
+              <option value="24h">LAST 24 HOURS</option>
+              <option value="7d">LAST 7 DAYS</option></select
+            ><button class="button" data-export="wallets">↓ EXPORT JSON</button>
+          </div>
+          <p
+            class="filter-message"
+            id="wallet-filter-message"
+            role="status"
+          ></p>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>WALLET</th>
+                  <th>EVENTS</th>
+                  <th>TRADES</th>
+                  <th>TOKENS</th>
+                  <th>FINALIZED EVENTS</th>
+                  <th>LAST OBSERVED</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="wallet-rows"></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="wallets-pagination"></div>
+        </section>
+      </section>
+
+      <section
+        class="page"
+        id="page-activity"
+        aria-labelledby="activity-heading"
+        hidden
+      >
+        <div class="page-intro">
+          <p class="eyebrow">THE EVIDENCE RECORD</p>
+          <h1 id="activity-heading">Observation, in order.</h1>
+          <p>
+            Canonical events with their recorded slot, source program and
+            reconciliation state.
+          </p>
+        </div>
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>◆ CANONICAL ACTIVITY</h2>
+            <span class="micro" id="activity-total">— EVENTS</span>
+          </div>
+          <div class="table-toolbar">
+            <div class="search-field">
+              <span aria-hidden="true">⌕</span
+              ><input
+                type="search"
+                id="activity-search"
+                placeholder="Mint, wallet or transaction signature…"
+                aria-label="Search activity by public address or signature"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+            <label class="sr-only" for="activity-window"
+              >Activity observation window</label
+            ><select id="activity-window">
+              <option value="all">ALL INDEXED</option>
+              <option value="1h">LAST HOUR</option>
+              <option value="24h">LAST 24 HOURS</option>
+              <option value="7d">LAST 7 DAYS</option></select
+            ><label class="sr-only" for="finality-filter">Finality</label
+            ><select id="finality-filter">
+              <option value="">ALL FINALITY</option>
+              <option value="finalized">FINALIZED</option>
+              <option value="provisional">PROVISIONAL</option>
+              <option value="reorged_or_changed">
+                CHANGED / REORGED
+              </option></select
+            ><button class="button" data-export="activity">
+              ↓ EXPORT JSON
+            </button>
+          </div>
+          <p
+            class="filter-message"
+            id="activity-filter-message"
+            role="status"
+          ></p>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>EVENT</th>
+                  <th>TOKEN</th>
+                  <th>WALLET</th>
+                  <th>SLOT</th>
+                  <th>FINALITY</th>
+                  <th>OBSERVED</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="activity-rows"></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="activity-pagination"></div>
+        </section>
+      </section>
+
+      <section
+        class="page"
+        id="page-agents"
+        aria-labelledby="agents-heading"
+        hidden
+      >
+        <div class="page-intro">
+          <p class="eyebrow">SIX AGENTS · ONE NETWORK</p>
+          <h1 id="agents-heading">The work behind the Orb.</h1>
+          <p>
+            Two evidence pipelines are implemented. Planned research agents stay
+            explicitly unavailable.
+          </p>
+        </div>
+        <div class="agents-grid" id="agents-grid"></div>
+      </section>
+
+      <section
+        class="page"
+        id="page-system"
+        aria-labelledby="system-heading"
+        hidden
+      >
+        <div class="page-intro">
+          <p class="eyebrow">LOCAL OPERATIONS</p>
+          <h1 id="system-heading">Know what is connected.</h1>
+          <p>
+            Database readiness, observation freshness and bounded analysis
+            coverage.
+          </p>
+        </div>
+        <div class="system-grid">
+          <section class="panel">
+            <div class="panel-heading">
+              <h2>◆ SYSTEM HEALTH</h2>
+              <button class="text-button" id="refresh-now">↻ REFRESH</button>
+            </div>
+            <dl class="system-facts" id="system-facts"></dl>
+          </section>
+          <section class="panel">
+            <div class="panel-heading">
+              <h2>◆ OBSERVATION HISTORY</h2>
+              <span class="micro">24 UTC HOURS</span>
+            </div>
+            <div class="history-bars" id="history-bars"></div>
+            <div class="history-axis"><span>24H AGO</span><span>NOW</span></div>
+            <p class="panel-note">
+              Counts show local observation time. A quiet index does not
+              establish a quiet chain.
+            </p>
+          </section>
+          <section class="panel">
+            <div class="panel-heading"><h2>◆ DATA AVAILABILITY</h2></div>
+            <div id="availability" class="availability"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-heading"><h2>◆ RESEARCH WORKSPACE</h2></div>
+            <div class="workspace-info">
+              <p>
+                Browse retained observations and evidence. Live intake and
+                wallet-history jobs run only through explicit backend commands.
+              </p>
+              <p>
+                Graph exports include public identifiers, typed relationships,
+                strength and freshness. Raw provider bodies and private metadata
+                stay local.
+              </p>
+              <button class="button" id="export-graph">
+                ↓ EXPORT GRAPH JSON
+              </button>
+              <p class="micro muted">
+                UP TO 200 RELATIONSHIPS · BOUNDED EXPORT
+              </p>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section
+        class="page"
+        id="page-guide"
+        aria-labelledby="guide-heading"
+        hidden
+      >
+        <div class="page-intro">
+          <p class="eyebrow">A WINDOW INTO THE CHAIN</p>
+          <h1 id="guide-heading">Evidence before inference.</h1>
+          <p>
+            The Observatory keeps what was observed separate from what remains
+            unknown.
+          </p>
+        </div>
+        <div class="guide-grid">
+          <article class="panel guide-card">
+            <span class="step-number blue">01 / OBSERVE</span>
+            <h2>Scout reads the record.</h2>
+            <p>
+              Launch, trade and pool observations are journaled before decoding.
+              Canonical identities keep a replay from becoming a second event.
+            </p>
+            <a class="text-link" href="#activity">INSPECT ACTIVITY →</a>
+          </article>
+          <article class="panel guide-card">
+            <span class="step-number purple">02 / CONNECT</span>
+            <h2>Cartographer maps evidence.</h2>
+            <p>
+              Funding links and shared transaction activity build a typed graph.
+              Same-slot activity stays weak evidence; it does not prove a bundle
+              or common control.
+            </p>
+            <a class="text-link" href="#tokens">EXPLORE THE INDEX →</a>
+          </article>
+          <article class="panel guide-card">
+            <span class="step-number yellow">03 / KEEP THE CONTEXT</span>
+            <h2>Unknown stays unknown.</h2>
+            <p>
+              Missing history is not zero funding. Provisional is not finalized.
+              Coverage limits and stale observations stay attached to the
+              evidence.
+            </p>
+            <a class="text-link" href="#system">CHECK AVAILABILITY →</a>
+          </article>
+        </div>
+        <section class="panel guide-legend">
+          <div class="panel-heading"><h2>◆ READING THE INSTRUMENTS</h2></div>
+          <dl>
+            <div>
+              <dt><span class="badge green">FINALIZED</span></dt>
+              <dd>Reconciliation verified the canonical observation.</dd>
+            </div>
+            <div>
+              <dt><span class="badge yellow">PROVISIONAL</span></dt>
+              <dd>
+                Observed at a confirmed or processed commitment; reconciliation
+                is pending.
+              </dd>
+            </div>
+            <div>
+              <dt><span class="badge purple">NOT READ</span></dt>
+              <dd>The requested evidence has not been recorded.</dd>
+            </div>
+            <div>
+              <dt><span class="badge orange">STALE</span></dt>
+              <dd>
+                The observation or evidence is older than its freshness window.
+              </dd>
+            </div>
+            <div>
+              <dt><span class="badge red">CHANGED</span></dt>
+              <dd>
+                The finalized record differs, or the observation was reorged.
+              </dd>
+            </div>
+          </dl>
+          <p class="panel-note">
+            The Orb is a schematic of the observation pipeline. Open a token’s
+            relationship view to inspect actual indexed nodes and edges.
+            Probability scoring, pricing, screening and execution are not
+            running.
+          </p>
+        </section>
+      </section>
+
+      <footer class="site-footer">
+        <span
+          ><span class="blue">◆</span> QUANTUMORB
+          <span class="muted">/ THE OBSERVATORY</span></span
+        ><span id="footer-source">LOCAL INDEX · READ-ONLY RESEARCH</span
+        ><a href="#guide">EVIDENCE, NOT CERTAINTY ↗</a>
+      </footer>
+    </main>
+
+    <dialog
+      id="detail-dialog"
+      class="detail-dialog"
+      aria-labelledby="detail-heading"
+    >
+      <div class="dialog-heading">
+        <div>
+          <p class="eyebrow">TOKEN DOSSIER <span id="detail-source"></span></p>
+          <h2 id="detail-heading">Token evidence</h2>
+        </div>
+        <button
+          class="icon-button close-dialog"
+          aria-label="Close token details"
+        >
+          ×
+        </button>
+      </div>
+      <div id="detail-content" class="detail-content"></div>
+    </dialog>
+    <div class="toast" id="toast" role="status" hidden></div>
+    <noscript
+      ><div class="noscript">
+        JavaScript is needed for the interactive dashboard. The local health API
+        remains available at /health/details.
+      </div></noscript
+    >
+  </body>
+</html>

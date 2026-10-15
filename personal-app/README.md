@@ -24,6 +24,43 @@ tables and columns exist. Liveness remains available without a database or key.
 ingestion state remain `not_read` unless an actual connection is observed; local
 readiness does not claim that provider authentication has been verified.
 
+## Observatory dashboard
+
+Open `http://127.0.0.1:8000/` after starting the local server. The observation
+desk follows the README's Observatory screens: an animated Orb, incoming
+observables, evidence stack, six agent panels and indexed activity counters.
+There is no marketing hero section.
+
+![Observatory with explicitly labeled sample data](docs/dashboard.png)
+
+- **Orb:** index counts, recent events, motion controls and automatic refresh pause.
+- **Tokens:** mint/creator search, lifecycle filters, pagination and token dossiers.
+- **Traders:** observed wallets, event/trade counts and wallet activity drilldown.
+- **Activity:** address/signature search, observation windows and finality filters.
+- **Agents:** recorded Scout/Cartographer activity and explicit planned-agent states.
+- **System:** readiness, freshness, hourly observations and bounded graph export.
+
+Token dossiers show coverage, unknown funding/bundle evidence, warnings and actual
+stored relationship graphs. Select a graph node to copy its public identifier.
+Graph and table downloads are bounded public JSON exports. Raw provider payloads
+and private token metadata are excluded from these views.
+
+The default source is **Local data**. Select **Sample data** in the header, or
+open `/?source=demo`, to explore an explicitly labeled illustrative workspace.
+Sample mode runs in the browser and never writes to storage or contacts a
+provider. The source preference is stored locally; override it with
+`/?source=local`. Only this display preference is stored in browser storage.
+
+The Orb is a pipeline schematic. Actual typed relationships appear in token
+dossiers. Judge, Quant, Guard and Executor remain unavailable; no scores are
+invented and no execution is enabled.
+
+Read-only APIs are `GET /api/dashboard`, `/api/tokens`, `/api/wallets` and
+`/api/activity`. Lists accept a bounded `limit` (1–100), `offset` (0–100000) and
+public address-prefix query. Activity/wallet windows use local observation time
+(`all`, `1h`, `24h`, `7d`). Tokens accept lifecycle filters; activity accepts
+finality filters. Unavailable storage never becomes fabricated zero activity.
+
 ## Replay and inspect evidence
 
 ```bash
@@ -71,6 +108,7 @@ env -u HELIUS_API_KEY python -m pytest -q
 ruff check .
 ruff format --check .
 python -m mypy app scripts
+node --test tests/js/dashboard.test.mjs
 ```
 
 CI runs this gate on Python 3.11, 3.12 and 3.13 with the tested dependency
@@ -86,3 +124,16 @@ contract gate has a test that rejects any attempted network connection.
 
 The broader sealed vault and its tests remain separate from this backend; the
 same CI workflow also verifies its seal, ledger, contracts and JavaScript proofs.
+
+For an optional desktop/mobile acceptance pass, install Playwright in a separate
+test environment. Start a loopback server against a temporary migrated database,
+replay the three checked-in create/trade/pool fixtures, and run an offline
+`analyze-token` for their shared mint. Then run:
+
+```bash
+python tests/browser/check_dashboard.py --base-url http://127.0.0.1:8765
+```
+
+The browser check covers actual local data, sample isolation, filtering,
+pagination, graph downloads, reduced motion, mobile navigation and unavailable
+storage recovery. Screenshots go to `/tmp/quantumorb-dashboard-review`.

@@ -117,6 +117,8 @@ jobs:
           node-version: "20"
       - name: the same vectors, seals and proofs as the Python side
         run: node --test examples/js/qorb-seal.test.mjs
+      - name: dashboard data formatting, uncertainty, filters and sample graph contracts
+        run: node --test personal-app/tests/js/dashboard.test.mjs
       - name: the published seal, from Node
         run: node examples/js/verify.mjs examples/proofs/*.json --ledger sealed/ledger.json --manifest sealed/manifest.json
 

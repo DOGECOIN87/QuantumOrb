@@ -29,6 +29,9 @@ dev = [
 [tool.setuptools.packages.find]
 include = ["app*", "scripts*", "alembic*"]
 
+[tool.setuptools.package-data]
+app = ["web/index.html", "web/assets/*"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra"
