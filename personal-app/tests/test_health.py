@@ -24,3 +24,27 @@ def test_live_health_works_without_helius_key(monkeypatch: pytest.MonkeyPatch) -
 
     assert response.status_code == 200
     assert response.json() == {"status": "live", "mode": "demo"}
+
+
+def test_dashboard_root_serves_html(monkeypatch: pytest.MonkeyPatch) -> None:
+    """The app should expose a browser dashboard at the root route."""
+    monkeypatch.setenv("APP_ENV", "development")
+    monkeypatch.setenv("INGEST_MODE", "demo")
+    monkeypatch.setenv("INGEST_TRANSPORT", "fixture")
+    monkeypatch.delenv("HELIUS_API_KEY", raising=False)
+
+    from app.main import create_app
+
+    app = create_app()
+
+    async def get_dashboard() -> httpx.Response:
+        transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+            return await client.get("/")
+
+    response = asyncio.run(get_dashboard())
+
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("text/html")
+    assert "QuantumOrb" in response.text
+    assert "health" in response.text.lower()

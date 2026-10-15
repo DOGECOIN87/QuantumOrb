@@ -12,7 +12,7 @@ From this directory, with Python 3.11 or newer:
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-python -m pip install -e '.[dev]'
+python -m pip install -c constraints-dev.txt -e '.[dev]'
 python -m scripts.manage init-db
 python -m scripts.manage health
 uvicorn app.main:app --host 127.0.0.1 --port 8000
@@ -65,10 +65,24 @@ verification. Tests exercise those components through injected offline adapters.
 ## Quality checks
 
 ```bash
-python -m pytest -q
+python -m pip check
+env -u HELIUS_API_KEY python -m scripts.verify_contracts
+env -u HELIUS_API_KEY python -m pytest -q
 ruff check .
 ruff format --check .
 python -m mypy app scripts
 ```
 
-The broader sealed vault and its tests remain separate from this backend.
+CI runs this gate on Python 3.11, 3.12 and 3.13 with the tested dependency
+constraints. No live credentials are supplied. The contract command validates
+all eight vault/backend schemas, verifies both pinned IDL hashes, creates a
+temporary database with Alembic, checks for migration drift, and replays each of
+the three Scout golden fixtures twice through the application pipeline. Golden
+mismatches report the fixture and JSON path and return a nonzero exit status.
+Its selected stable fields are explicitly listed in `scripts/verify_contracts.py`.
+The pytest suite also covers the funding, temporal uncertainty and full summary
+golden contracts, local HTTP routes, safe exports and replay idempotence. The
+contract gate has a test that rejects any attempted network connection.
+
+The broader sealed vault and its tests remain separate from this backend; the
+same CI workflow also verifies its seal, ledger, contracts and JavaScript proofs.

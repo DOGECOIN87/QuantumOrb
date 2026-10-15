@@ -56,8 +56,16 @@ jobs:
       - run: pytest
 
   personal-app:
-    name: personal app · Python 3.12
+    name: personal app · Python ${{ matrix.python }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12", "3.13"]
+    env:
+      APP_ENV: development
+      INGEST_MODE: demo
+      INGEST_TRANSPORT: fixture
     defaults:
       run:
         working-directory: personal-app
@@ -65,11 +73,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: |
+            personal-app/pyproject.toml
+            personal-app/constraints-dev.txt
       - name: install personal app and development dependencies
-        run: python -m pip install -e '.[dev]'
-      - name: test personal app
-        run: python -m pytest -q
+        run: |
+          python -m pip install -c constraints-dev.txt -e '.[dev]'
+          python -m pip check
+      - name: verify schemas, pinned IDLs, migrations and Scout golden vectors offline
+        run: env -u HELIUS_API_KEY python -m scripts.verify_contracts
+      - name: test personal app and Cartographer golden vectors without provider credentials
+        run: env -u HELIUS_API_KEY python -m pytest -q
       - name: lint and verify formatting
         run: |
           ruff check .
