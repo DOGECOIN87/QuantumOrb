@@ -398,7 +398,10 @@ class GraphEdgeEvidence(UtcModel):
         validation_alias=AliasChoices("algorithm_version", "algorithmVersion")
     )
 
-    _validate_signature = field_validator("signature")(_signature)
+    @field_validator("signature")
+    @classmethod
+    def validate_optional_signature(cls, value: str | None) -> str | None:
+        return None if value is None else _signature(value)
 
 
 class CartographerCoverage(DomainModel):
