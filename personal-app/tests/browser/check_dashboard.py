@@ -100,6 +100,9 @@ def main():
         )
         page.get_by_role("button", name="EVIDENCE", exact=True).click()
         expect(page.locator("#detail-evidence")).to_contain_text("Partial / missing history")
+        page.get_by_role("button", name="RELATIONSHIPS", exact=True).click()
+        expect(page.locator(".graph-edges")).to_contain_text("↔")
+        expect(page.locator(".graph-edges")).to_contain_text("NEEDS REVIEW")
         page.keyboard.press("Escape")
         assert not errors, errors
         assert not external, external

@@ -7,6 +7,8 @@ import {
   validSearch,
   windowMatches,
   sparkPoints,
+  finalityLabel,
+  relationshipSeparator,
 } from "../../app/web/assets/format.mjs";
 
 test("unknown metrics stay unknown and observation ages are UTC based", () => {
@@ -25,6 +27,15 @@ test("unknown metrics stay unknown and observation ages are UTC based", () => {
     age("2026-10-15T00:00:00Z", Date.parse("2026-10-14T00:00:00Z")),
     "0s ago",
   );
+});
+test("changed observations and undirected relationships retain their meaning", () => {
+  assert.equal(finalityLabel("finalized"), "FINALIZED");
+  assert.equal(finalityLabel("provisional"), "PROVISIONAL");
+  assert.equal(finalityLabel("reorged_or_changed"), "CHANGED");
+  assert.equal(finalityLabel(null), "NOT READ");
+  assert.equal(relationshipSeparator("undirected"), " ↔ ");
+  assert.equal(relationshipSeparator("directed"), " → ");
+  assert.equal(relationshipSeparator(null), " — ");
 });
 test("search permits only bounded public Base58 prefixes", () => {
   assert.equal(validSearch(""), true);

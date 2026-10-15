@@ -5,6 +5,14 @@ export const count = (value) =>
     ? new Intl.NumberFormat("en-US").format(value)
     : "—";
 export const humanize = (value) => (value || "not read").replaceAll("_", " ");
+export const finalityLabel = (value) =>
+  ({
+    finalized: "FINALIZED",
+    provisional: "PROVISIONAL",
+    reorged_or_changed: "CHANGED",
+  })[value] || "NOT READ";
+export const relationshipSeparator = (direction) =>
+  direction === "undirected" ? " ↔ " : direction === "directed" ? " → " : " — ";
 export const timeUTC = (value) => {
   const date = new Date(value);
   return value && Number.isFinite(date.getTime())

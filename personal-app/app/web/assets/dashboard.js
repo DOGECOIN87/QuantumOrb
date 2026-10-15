@@ -9,6 +9,8 @@ import {
   sparkPoints,
   eventColor,
   finalityColor,
+  finalityLabel,
+  relationshipSeparator,
   validSearch,
 } from "./format.mjs";
 
@@ -396,7 +398,7 @@ function renderStack(events) {
         node(
           "small",
           "",
-          `${timeUTC(event.observed_at)} · ${event.finality === "finalized" ? "FINAL" : "PROVISIONAL"}`,
+          `${timeUTC(event.observed_at)} · ${finalityLabel(event.finality)}`,
         ),
       );
       button.append(
@@ -1215,7 +1217,7 @@ function renderGraph(target, graph) {
   const table = node("table", "graph-edges"),
     head = node("thead"),
     heading = node("tr");
-  for (const label of ["RELATIONSHIP", "FROM → TO", "STRENGTH", "STATE"])
+  for (const label of ["RELATIONSHIP", "ENDPOINTS", "STRENGTH", "STATE"])
     heading.append(node("th", "", label));
   head.append(heading);
   const body = node("tbody");
@@ -1229,7 +1231,7 @@ function renderGraph(target, graph) {
     row.append(
       cell(humanize(edge.edge_type)),
       cell(
-        `${shortAddress(from?.address_or_identifier, 4, 3)} → ${shortAddress(to?.address_or_identifier, 4, 3)}`,
+        `${shortAddress(from?.address_or_identifier, 4, 3)}${relationshipSeparator(edge.direction)}${shortAddress(to?.address_or_identifier, 4, 3)}`,
       ),
       cell(badge(edge.strength, edge.strength === "weak" ? "yellow" : "blue")),
       cell(evidenceState),
