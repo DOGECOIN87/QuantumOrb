@@ -55,6 +55,7 @@ def activity(
     number=90,
     finality="finalized",
     event_index=0,
+    event_type="curve_buy",
 ):
     sig = signature(number)
     raw = RpcResponseJournal(factory, "helius_rpc", "test").insert(
@@ -66,7 +67,8 @@ def activity(
         signature=sig,
         slot=slot,
     )
-    key = canonical_event_key("helius", sig, PUMP, "TradeEvent", event_index)
+    event_name = "CreateEvent" if event_type == "token_created" else "TradeEvent"
+    key = canonical_event_key("helius", sig, PUMP, event_name, event_index)
     event = CanonicalSolanaEvent(
         event_key=key,
         signature=sig,
@@ -76,8 +78,8 @@ def activity(
         commitment="finalized",
         program="pump",
         program_id=PUMP,
-        event_name="TradeEvent",
-        event_type="curve_buy",
+        event_name=event_name,
+        event_type=event_type,
         event_index=event_index,
         mint=mint,
         user=wallet,

@@ -24,6 +24,10 @@
     "run_id": {
       "type": "string"
     },
+    "summary_ref": {
+      "type": ["string", "null"],
+      "format": "uuid"
+    },
     "mint": {
       "type": "string"
     },

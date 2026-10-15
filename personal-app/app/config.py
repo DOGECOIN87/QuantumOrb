@@ -104,6 +104,8 @@ class Settings(BaseSettings):
     cartographer_lookback_days: int = Field(default=30, ge=1, le=30)
     cartographer_min_funding_lamports: int = Field(default=0, ge=0, le=(1 << 64) - 1)
     cartographer_max_temporal_edges: int = Field(default=1000, ge=1, le=10000)
+    cartographer_max_traders_per_token: int = Field(default=100, ge=1, le=200)
+    cartographer_near_time_seconds: int = Field(default=3, ge=0, le=3600)
 
     @field_validator("app_env", mode="before")
     @classmethod
@@ -197,6 +199,8 @@ class Settings(BaseSettings):
             "cartographer_lookback_days": self.cartographer_lookback_days,
             "cartographer_min_funding_lamports": self.cartographer_min_funding_lamports,
             "cartographer_max_temporal_edges": self.cartographer_max_temporal_edges,
+            "cartographer_max_traders_per_token": self.cartographer_max_traders_per_token,
+            "cartographer_near_time_seconds": self.cartographer_near_time_seconds,
         }
 
 

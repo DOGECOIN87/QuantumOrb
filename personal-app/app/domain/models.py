@@ -11,6 +11,7 @@ import hashlib
 import json
 from datetime import UTC, datetime
 from typing import Annotated, Generic, TypeAlias, TypeVar
+from uuid import UUID
 
 from pydantic import (
     AliasChoices,
@@ -414,6 +415,9 @@ class CartographerEvidenceUpdated(DomainModel):
     type: str = Field("CartographerEvidenceUpdated", pattern=r"^CartographerEvidenceUpdated$")
     schema_version: str = Field("0.1", pattern=r"^0\.1$")
     run_id: str
+    summary_ref: str | None = Field(
+        default=None, validation_alias=AliasChoices("summary_ref", "summaryRef")
+    )
     mint: str
     nodes_added: NonNegativeInt
     edges_added: NonNegativeInt
@@ -421,3 +425,8 @@ class CartographerEvidenceUpdated(DomainModel):
     coverage: CartographerCoverage
     warnings: list[str] = Field(default_factory=list)
     algorithm_version: str
+
+    @field_validator("summary_ref")
+    @classmethod
+    def summary_uuid(cls, value: str | None) -> str | None:
+        return str(UUID(value)) if value is not None else None

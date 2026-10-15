@@ -576,7 +576,8 @@ declare namespace QuantumOrb {
     edgesAdded: number;
     edgesRetracted: number;
     coverage: CartographerCoverage;
-    summaryRef: DatabaseId;
+    /** UUID of the persisted job_runs summary; runId is also a lookup key. */
+    summaryRef?: UUID | null;
     warnings: string[];
     algorithmVersion: string;
   }

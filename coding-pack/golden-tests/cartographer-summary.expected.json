@@ -1,0 +1,39 @@
+{
+  "mint": "11111111111111111111111111111115",
+  "creator_wallet": null,
+  "user_wallet": null,
+  "trader_count_observed": 2,
+  "wallets_with_inbound_funding": 2,
+  "shared_funder_groups": 1,
+  "same_transaction_groups": 0,
+  "same_slot_groups": 1,
+  "same_bundle_groups": null,
+  "coverage": {
+    "history_complete": true,
+    "wallets_scanned": 2,
+    "transactions_scanned": 2,
+    "provider": "helius_getTransactionsForAddress",
+    "scope": "persisted_canonical_events_and_bounded_wallet_history",
+    "missing_wallet_histories": 0,
+    "limits": {
+      "lookback_days": 30,
+      "max_wallets": 200,
+      "max_traders": 100,
+      "max_history_transactions": 1000,
+      "max_counterparties": 100,
+      "max_temporal_edges": 1000,
+      "min_funding_lamports": 0,
+      "near_time_seconds": 3
+    },
+    "warnings": [
+      "bundle_data_unavailable",
+      "create_event_not_read"
+    ]
+  },
+  "warnings": [
+    "bundle_data_unavailable",
+    "create_event_not_read"
+  ],
+  "state": "observed",
+  "algorithm_version": "cartographer-0.1.0"
+}
