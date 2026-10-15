@@ -97,8 +97,17 @@ class RawJournal:
                 record_values[field] = timestamp.astimezone(UTC)
         return RawEventRecord(**record_values)
 
-    def insert(self, envelope: ProviderEnvelope) -> RawEventRecord:
-        """Persist an envelope, returning the durable row for inserts and duplicates."""
+    def insert(
+        self,
+        envelope: ProviderEnvelope,
+        *,
+        before_commit: Callable[[Session, RawEventRecord], None] | None = None,
+    ) -> RawEventRecord:
+        """Persist an envelope and optional dependent state in the same transaction.
+
+        The callback also runs for duplicates, using the original immutable record.
+        A callback failure rolls back all changes made by this operation.
+        """
         payload_json = canonical_payload_json(envelope.raw_payload)
         payload_sha256 = hashlib.sha256(payload_json.encode("utf-8")).hexdigest()
         if envelope.raw_payload_sha256 != payload_sha256:
@@ -115,8 +124,11 @@ class RawJournal:
                     raise RawJournalConflictError(
                         "raw event identity already exists with a different payload hash"
                     )
+                record = self._record(existing)
+                if before_commit is not None:
+                    before_commit(session, record)
                 session.commit()
-                return self._record(existing)
+                return record
 
             now = datetime.now(UTC)
             values = {
@@ -138,7 +150,6 @@ class RawJournal:
             }
             try:
                 session.execute(insert(raw_events).values(values))
-                session.commit()
             except IntegrityError:
                 session.rollback()
                 raced = session.execute(
@@ -150,15 +161,22 @@ class RawJournal:
                     raise RawJournalConflictError(
                         "raw event identity already exists with a different payload hash"
                     ) from None
+                record = self._record(raced)
+                if before_commit is not None:
+                    before_commit(session, record)
                 session.commit()
-                return self._record(raced)
+                return record
 
             persisted = session.execute(
                 select(raw_events).where(raw_events.c.event_key == event_key)
             ).first()
             if persisted is None:
                 raise RawJournalError("raw event insert did not produce a persisted row")
-            return self._record(persisted)
+            record = self._record(persisted)
+            if before_commit is not None:
+                before_commit(session, record)
+            session.commit()
+            return record
         except Exception:
             if session.in_transaction():
                 session.rollback()

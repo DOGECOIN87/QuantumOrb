@@ -24,6 +24,7 @@ declare namespace QuantumOrb {
     | "laserstream"
     | "logs_subscribe"
     | "parsed_events"
+    | "helius_rpc"
     | "fixture";
   type ProgramName = "pump" | "pump_amm";
   type DecodeStatus = "decoded" | "raw_only" | "failed";
@@ -619,18 +620,22 @@ declare namespace QuantumOrb {
     includeTokenAccounts?: boolean;
   }
 
+  /** Adapter request; the RPC wire shape is [address, remaining options]. */
   interface HeliusWalletHistoryRequest {
-    address: Address;
-    transactionDetails: "signatures" | "full";
-    sortOrder?: "asc" | "desc";
-    limit?: number;
-    paginationToken?: string;
-    commitment?: "confirmed" | "finalized";
-    filters?: {
-      slot?: { gte?: number; gt?: number; lte?: number; lt?: number };
-      blockTime?: { gte?: number; gt?: number; lte?: number; lt?: number; eq?: number };
-      status?: "succeeded" | "failed" | "any";
-      tokenAccounts?: "none" | "balanceChanged" | "all";
+    readonly address: Address;
+    readonly transactionDetails: "full";
+    readonly sortOrder: "asc" | "desc";
+    /** RPC page size, from 1 through 1000. */
+    readonly limit: number;
+    readonly paginationToken?: string;
+    readonly commitment: "confirmed" | "finalized";
+    readonly encoding: "json";
+    readonly maxSupportedTransactionVersion: 1;
+    readonly filters: {
+      /** Unix seconds: inclusive start and exclusive end. */
+      readonly blockTime: { readonly gte: number; readonly lt: number };
+      readonly status: "succeeded" | "failed" | "any";
+      readonly tokenAccounts: "none" | "balanceChanged" | "all";
     };
   }
 }

@@ -10,6 +10,7 @@ class Transport(StrEnum):
     LASERSTREAM = "laserstream"
     LOGS_SUBSCRIBE = "logs_subscribe"
     PARSED_EVENTS = "parsed_events"
+    HELIUS_RPC = "helius_rpc"
     FIXTURE = "fixture"
 
 

@@ -18,6 +18,30 @@ def test_missing_key_is_allowed_in_demo_mode() -> None:
     assert settings.safe_diagnostics()["helius_api_key"] == "[missing]"
 
 
+@pytest.mark.parametrize(
+    "url",
+    [
+        "https://fs-beta.helius-rpc.com/",
+        "wss://user:password@example.invalid/",
+        "wss://example.invalid/?api-key=synthetic-key",
+        "wss://example.invalid/#fragment",
+    ],
+)
+@pytest.mark.parametrize("field", ["helius_parsed_streams_discovery_url", "helius_logs_ws_url"])
+def test_stream_endpoints_reject_unsafe_urls(field: str, url: str) -> None:
+    with pytest.raises(ValidationError):
+        isolated_settings(**{field: url})
+
+
+def test_stream_endpoints_are_separate_and_diagnostics_are_secret_free() -> None:
+    settings = isolated_settings(helius_api_key="synthetic-discovery-secret")
+    diagnostics = settings.safe_diagnostics()
+    assert diagnostics["helius_parsed_streams_url"] == "wss://beta.helius-rpc.com/"
+    assert diagnostics["helius_parsed_streams_discovery_url"] == "wss://fs-beta.helius-rpc.com/"
+    assert diagnostics["helius_logs_ws_url"] == "wss://beta.helius-rpc.com/"
+    assert "synthetic-discovery-secret" not in json.dumps(diagnostics)
+
+
 def test_missing_key_is_rejected_in_live_mode() -> None:
     with pytest.raises(ValidationError, match="HELIUS_API_KEY is required"):
         isolated_settings(ingest_mode="live", ingest_transport="parsed_streams")
@@ -65,12 +89,14 @@ def test_provider_urls_reject_credentials_and_query_parameters() -> None:
         isolated_settings(helius_parsed_streams_url="wss://user:pass@example.invalid/")
 
 
-def test_api_key_is_rejected_when_embedded_in_url_even_in_demo_mode() -> None:
+@pytest.mark.parametrize("field", ["helius_rpc_url", "helius_logs_ws_url"])
+def test_api_key_is_rejected_when_embedded_in_url_even_in_demo_mode(field: str) -> None:
     secret = "unique-url-key-do-not-print"
+    scheme = "wss" if field == "helius_logs_ws_url" else "https"
     with pytest.raises(ValidationError, match="must not be embedded"):
         isolated_settings(
             helius_api_key=secret,
-            helius_rpc_url=f"https://rpc.example.invalid/{secret}",
+            **{field: f"{scheme}://rpc.example.invalid/{secret}"},
         )
 
 

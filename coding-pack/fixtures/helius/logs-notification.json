@@ -7,7 +7,7 @@
   "slot": 300000001,
   "signature": "5xSKzM8bvpudE521jikHqASzMr23Ms4X4ieY3K8oFPFrJWCSSgYocJmHznrR8b12voDxKDH8ykdCLXSRrx6duVLH",
   "transaction_error": null,
-  "raw_payload_sha256": "10f375bdcfbbbc3dea840507aa0ff8683ece109ee5c9f29b3a89582349b0ac87",
+  "raw_payload_sha256": "c8ef0aa0bc324ea9d0507921a7cc9af439f41118c6e9e5b5c4af7b7957cf69ee",
   "idl_revision": "fixture-pump-idl-1",
   "raw_payload": {
     "jsonrpc": "2.0",
@@ -25,9 +25,9 @@
             "Program log: Instruction: CreateV2",
             "Program 6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P success"
           ]
-        },
-        "subscription": 14
-      }
+        }
+      },
+      "subscription": 14
     }
   }
 }

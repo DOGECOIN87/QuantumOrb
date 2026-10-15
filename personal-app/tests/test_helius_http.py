@@ -118,3 +118,96 @@ def test_credentials_are_rejected_in_query_parameters():
             run(client.get_json("v0/transactions", params={"api-key": API_KEY}))
     finally:
         run(http_client.aclose())
+
+
+@pytest.mark.parametrize(
+    "content",
+    [
+        b'{"meta":{"err":{"failure":1},"err":null}}',
+        b'{"amount":NaN}',
+        b'{"amount":Infinity}',
+        b'{"amount":1e9999}',
+        b'"scalar"',
+        b"\xff",
+        b"{invalid}",
+    ],
+)
+def test_ambiguous_or_nonfinite_json_is_rejected_without_retry(content):
+    client, sleeps, http_client = make_client(lambda request: httpx.Response(200, content=content))
+    try:
+        with pytest.raises(HeliusHttpError) as raised:
+            run(client.get_json(""))
+    finally:
+        run(http_client.aclose())
+    assert raised.value.code == "helius_invalid_json"
+    assert not raised.value.retryable
+    assert sleeps == []
+
+
+@pytest.mark.parametrize("change", ["id", "version", "extra", "both", "missing"])
+def test_rpc_response_must_match_the_request_envelope(change):
+    def handler(request):
+        body = json.loads(request.content)
+        response = {"jsonrpc": "2.0", "id": body["id"], "result": None}
+        if change == "id":
+            response["id"] = "different-request"
+        elif change == "version":
+            response["jsonrpc"] = "1.0"
+        elif change == "extra":
+            response["future"] = API_KEY
+        elif change == "both":
+            response["error"] = {"code": -32001, "message": API_KEY}
+        else:
+            del response["result"]
+        return httpx.Response(200, json=response)
+
+    client, sleeps, http_client = make_client(handler)
+    try:
+        with pytest.raises(HeliusHttpError) as raised:
+            run(client.rpc("getTransaction"))
+    finally:
+        run(http_client.aclose())
+    assert raised.value.code == "helius_invalid_rpc_response"
+    assert not raised.value.retryable
+    assert API_KEY not in str(raised.value)
+    assert sleeps == []
+
+
+@pytest.mark.parametrize("rpc_code,retryable", [(-32001, True), (-32002, True), (-32602, False)])
+def test_rpc_error_keeps_safe_retry_classification(rpc_code, retryable):
+    def handler(request):
+        return httpx.Response(
+            200,
+            json={
+                "jsonrpc": "2.0",
+                "id": json.loads(request.content)["id"],
+                "error": {"code": rpc_code, "message": API_KEY},
+            },
+        )
+
+    client, _, http_client = make_client(handler)
+    try:
+        with pytest.raises(HeliusHttpError) as raised:
+            run(client.rpc("getSlot"))
+    finally:
+        run(http_client.aclose())
+    assert raised.value.code == "helius_rpc_error"
+    assert raised.value.retryable is retryable
+    assert API_KEY not in str(raised.value)
+
+
+def test_http_408_is_retried_as_a_transient_timeout():
+    attempts = 0
+
+    def handler(request):
+        nonlocal attempts
+        attempts += 1
+        return httpx.Response(408 if attempts == 1 else 200, json={"ok": True})
+
+    client, sleeps, http_client = make_client(handler)
+    try:
+        assert run(client.get_json("")) == {"ok": True}
+    finally:
+        run(http_client.aclose())
+    assert attempts == 2
+    assert len(sleeps) == 1

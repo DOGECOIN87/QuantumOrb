@@ -85,7 +85,9 @@ class Settings(BaseSettings):
 
     helius_api_key: SecretStr | None = None
     helius_rpc_url: str = "https://mainnet.helius-rpc.com/"
-    helius_parsed_streams_url: str = "wss://fs-beta.helius-rpc.com/"
+    helius_parsed_streams_url: str = "wss://beta.helius-rpc.com/"
+    helius_parsed_streams_discovery_url: str = "wss://fs-beta.helius-rpc.com/"
+    helius_logs_ws_url: str = "wss://beta.helius-rpc.com/"
 
     pump_program_id: str = Field(
         default="6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P",
@@ -128,7 +130,9 @@ class Settings(BaseSettings):
     def require_rpc_url_without_secrets(cls, value: str) -> str:
         return _validate_provider_url(value, required_scheme="https")
 
-    @field_validator("helius_parsed_streams_url")
+    @field_validator(
+        "helius_parsed_streams_url", "helius_parsed_streams_discovery_url", "helius_logs_ws_url"
+    )
     @classmethod
     def require_stream_url_without_secrets(cls, value: str) -> str:
         return _validate_provider_url(value, required_scheme="wss")
@@ -146,7 +150,10 @@ class Settings(BaseSettings):
             else ""
         )
         if key_value and (
-            key_value in self.helius_rpc_url or key_value in self.helius_parsed_streams_url
+            key_value in self.helius_rpc_url
+            or key_value in self.helius_parsed_streams_url
+            or key_value in self.helius_parsed_streams_discovery_url
+            or key_value in self.helius_logs_ws_url
         ):
             raise ValueError("HELIUS_API_KEY must not be embedded in provider URLs")
         if self.ingest_mode == "live":
@@ -173,6 +180,8 @@ class Settings(BaseSettings):
             "helius_api_key": "[set]" if key_is_set else "[missing]",
             "helius_rpc_url": self.helius_rpc_url,
             "helius_parsed_streams_url": self.helius_parsed_streams_url,
+            "helius_parsed_streams_discovery_url": self.helius_parsed_streams_discovery_url,
+            "helius_logs_ws_url": self.helius_logs_ws_url,
             "pump_program_id": self.pump_program_id,
             "pump_amm_program_id": self.pump_amm_program_id,
             "poll_interval_seconds": self.poll_interval_seconds,

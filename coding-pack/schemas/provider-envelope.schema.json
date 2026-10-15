@@ -24,6 +24,7 @@
         "laserstream",
         "logs_subscribe",
         "parsed_events",
+        "helius_rpc",
         "fixture"
       ]
     },

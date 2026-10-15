@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
+import math
 import random
 import time
 from collections.abc import Awaitable, Callable, Mapping
@@ -18,8 +20,29 @@ from app.logging_config import SafeError, log_event
 Json = dict[str, Any] | list[Any]
 T = TypeVar("T", bound=Json)
 
-_RETRYABLE_STATUS = frozenset({429, 500, 502, 503, 504})
+_RETRYABLE_STATUS = frozenset({408, 429, 500, 502, 503, 504})
 _LOGGER = logging.getLogger(__name__)
+
+
+def _unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    value: dict[str, Any] = {}
+    for key, item in pairs:
+        if key in value:
+            raise ValueError("ambiguous JSON object")
+        value[key] = item
+    return value
+
+
+def _reject_constant(value: str) -> Any:
+    del value
+    raise ValueError("non-finite JSON number")
+
+
+def _finite_float(value: str) -> float:
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError("non-finite JSON number")
+    return number
 
 
 class HeliusHttpError(SafeError):
@@ -172,8 +195,13 @@ class HeliusHttpClient:
                     retryable=response.status_code in _RETRYABLE_STATUS,
                 )
             try:
-                decoded = response.json()
-            except ValueError:
+                decoded = json.loads(
+                    response.content,
+                    object_pairs_hook=_unique_object,
+                    parse_constant=_reject_constant,
+                    parse_float=_finite_float,
+                )
+            except (ValueError, UnicodeDecodeError, RecursionError):
                 raise HeliusHttpError(
                     "helius_invalid_json", "provider returned invalid JSON"
                 ) from None
@@ -204,15 +232,25 @@ class HeliusHttpClient:
         if params is not None:
             payload["params"] = params
         response = await self.request_json("POST", "", json_body=payload)
-        if not isinstance(response, dict):
+        if (
+            not isinstance(response, dict)
+            or response.get("jsonrpc") != "2.0"
+            or response.get("id") != payload["id"]
+            or set(response) not in ({"jsonrpc", "id", "result"}, {"jsonrpc", "id", "error"})
+        ):
             raise HeliusHttpError(
                 "helius_invalid_rpc_response", "provider returned an invalid RPC response"
             )
         if "error" in response:
-            raise HeliusHttpError("helius_rpc_error", "provider returned an RPC error")
-        if "result" not in response:
+            error = response["error"]
+            if not isinstance(error, dict) or type(error.get("code")) is not int:
+                raise HeliusHttpError(
+                    "helius_invalid_rpc_response", "provider returned an invalid RPC response"
+                )
             raise HeliusHttpError(
-                "helius_invalid_rpc_response", "provider RPC result was not JSON data"
+                "helius_rpc_error",
+                "provider returned an RPC error",
+                retryable=error["code"] in {-32001, -32002},
             )
         return {"result": response["result"]}
 
